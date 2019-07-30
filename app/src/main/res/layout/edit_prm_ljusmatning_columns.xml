@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <Button
+            android:id="@+id/image_view_columns"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/question_mark_96px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Längdvärdena i kolumnerna"
+            android:textSize="8pt"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/swap_layout_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/change_layout_100px" />
+
+        <TextView
+            android:id="@+id/fardig_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/swap_layout_button"
+            android:text="Färdig:"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/checkbox_column"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fardig_text"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/column_edit_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:hint="Kolumn 1 t.ex. 0,0"
+                android:inputType="number|text"
+                android:padding="10dp"
+                android:textSize="8pt" />
+
+            <EditText
+                android:id="@+id/column_edit_text_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:inputType="number|text"
+                android:hint="Kolumn 2 t.ex. 0,5"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:inputType="number|text"
+                android:hint="Kolumn 3"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:inputType="number|text"
+                android:hint="Kolumn 4"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:inputType="number|text"
+                android:hint="Kolumn 5"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number|text"
+                android:background="@color/white"
+                android:hint="Kolumn 6"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|text"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:hint="Kolumn 7"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number|text"
+                android:background="@color/white"
+                android:hint="Kolumn 8"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|text"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:hint="Kolumn 9"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|text"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:hint="Kolumn 10"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number|text"
+                android:background="@color/white"
+                android:hint="Kolumn 11"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:inputType="number|text"
+                android:hint="Kolumn 12"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:inputType="number|text"
+                android:hint="Kolumn 13"
+                android:padding="10dp"
+                android:textSize="8pt" />
+            <EditText
+                android:id="@+id/column_edit_text_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:inputType="number|text"
+                android:background="@color/white"
+                android:hint="Kolumn 14"
+                android:padding="10dp"
+                android:textSize="8pt" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

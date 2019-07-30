@@ -1,0 +1,21 @@
+<resources>
+    <!-- Height of each list item -->
+    <dimen name="list_item_height">30dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="stroke_width">1dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+    <dimen name="layout_width_image">50dp</dimen>
+    <dimen name="layout_height_image">50dp</dimen>
+    <dimen name="menu_padding">10dp</dimen>
+    <dimen name="menu_space">10dp</dimen>
+    <dimen name="menu_text_size">32sp</dimen>
+    <dimen name="menu_button_margin">4dp</dimen>
+    <dimen name="menu_button_padding">10dp</dimen>
+    <dimen name="text_size_title">25sp</dimen>
+    <dimen name="text_size_snippet">18sp</dimen>
+    <dimen name="edit_text_size">10</dimen>
+    <dimen name="button_height_min">0dp</dimen>
+    <dimen name="button_width_min">0dp</dimen>
+</resources>

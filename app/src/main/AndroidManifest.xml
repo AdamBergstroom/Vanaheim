@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="se.vanaheim.vanaheim">
+
+    <!--add permission-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"
+    />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".LoginScreenActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+         <activity
+             android:name=".MainActivity"
+             android:parentActivityName=".LoginScreenActivity"/>
+        <activity
+            android:name=".AreaTableAndViewPagerLayout"
+            android:label="Alla projekt"
+            android:parentActivityName=".ChooseAreaViewActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".CreateAreaActivity"
+            android:label="Skapa nytt projekt"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".ObjectViewActivity"
+            android:label="Dina mätpunkter"
+            android:parentActivityName=".AreaTableAndViewPagerLayout"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".ObjectViewPRMActivity"
+            android:label="Dina mätningar"
+            android:parentActivityName=".AreaTableAndViewPagerLayout"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".CreateObjectActivity"
+            android:label="Skapa ny mätpunkt"
+            android:parentActivityName=".ObjectViewActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".CreateObjectPRMActivity"
+            android:label="Skapa ny mätning"
+            android:parentActivityName=".ObjectViewPRMActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".EditObjectActivity"
+            android:label="Redigering"
+            android:parentActivityName=".CreateObjectActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".ChooseAreaViewActivity"
+            android:label="Välj delsystem"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".AreaViewActivity"
+            android:label="Dina projekt"
+            android:parentActivityName=".ChooseAreaViewActivity"
+            android:theme="@style/RestTheme" />
+
+        <activity
+            android:name=".PropertyListViewActivity"
+            android:label="Kap i TSD PRM"
+            android:parentActivityName=".ChooseAreaViewActivity"
+            android:theme="@style/RestTheme" />
+
+        <activity
+            android:name=".EditPopertyListObject"
+            android:label="Redigera"
+            android:parentActivityName=".PropertyListViewActivity"
+            android:theme="@style/RestTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".EditPRMLjusmatning"
+            android:label="Redigering"
+            android:parentActivityName=".ObjectViewPRMActivity"
+            android:theme="@style/RestTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".TextSearchForMainActivity"
+            android:label=""
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".EditPDFForPRMLjusmatning"
+            android:label=""
+            android:parentActivityName=".EditPRMLjusmatning"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".EditPDFForPRMLjudmatning"
+            android:label=""
+            android:parentActivityName=".ObjectViewPRMActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".EditPDFForINFAndENE"
+            android:label=""
+            android:parentActivityName=".ObjectViewActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/RestTheme" />
+        <activity
+            android:name=".VaxlarOchSparActivity"
+            android:label=""
+            android:parentActivityName=".ObjectViewActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/RestTheme" />
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="se.vanaheim.vanaheim.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <!-- ressource file to create -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+
+</manifest>

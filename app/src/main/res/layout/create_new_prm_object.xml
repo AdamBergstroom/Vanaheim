@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <EditText
+        android:id="@+id/prm_ljudmatning_object_plats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:hint="Plats"
+        />
+
+    <Button
+        android:id="@+id/create_new_object_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skapa"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_below="@+id/prm_ljudmatning_object_plats"
+        android:background="@drawable/my_button"
+        />
+
+</RelativeLayout>

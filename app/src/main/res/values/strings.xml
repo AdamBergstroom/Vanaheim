@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Vanaheim</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="object_types">
+        <item>INF</item>
+        <item>ENE</item>
+        <item>PRM</item>
+    </string-array>
+</resources>

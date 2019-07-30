@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:screenOrientation="portrait"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <RadioButton
+            android:id="@+id/radio_button_areas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Projekt"
+            android:buttonTint="@color/colorPrimary"
+            />
+
+        <RadioButton
+            android:id="@+id/radio_button_objects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Objekt"
+            android:buttonTint="@color/colorPrimary"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkBox_INF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INF"
+            android:buttonTint="@color/colorAccent"
+            />
+
+        <CheckBox
+            android:id="@+id/checkBox_ENE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ENE"
+            android:buttonTint="@color/colorAccent"
+            />
+
+        <CheckBox
+            android:id="@+id/checkBox_PRM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRM"
+            android:buttonTint="@color/colorAccent"
+            />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ListView
+            android:id="@+id/list_areas_for_searching"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+</LinearLayout>

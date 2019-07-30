@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <EditText
+        android:id="@+id/first_value_for_object"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:hint="Ange km-tal"
+        android:inputType="number|text"
+        />
+
+    <Button
+        android:id="@+id/create_new_object_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skapa"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_below="@+id/first_value_for_object"
+        android:background="@drawable/my_button"
+        />
+
+</RelativeLayout>

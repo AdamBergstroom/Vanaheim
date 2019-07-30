@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    tools:context="se.vanaheim.vanaheim.MainActivity">
+
+    <include layout="@layout/toolbar_layout_main_activity"/>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/colorAccent"
+        android:src="@drawable/search_for_documents" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_objects_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/colorAccent"
+        android:src="@drawable/baseline_bookmarks_black_18dp" />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

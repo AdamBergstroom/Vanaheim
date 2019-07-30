@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="100dp"
+    android:layout_marginRight="100dp"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/show_infrastructure_areas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Infrastruktur"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/my_button"
+        />
+    <Button
+        android:id="@+id/show_energy_areas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Energi"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/my_button"
+        />
+
+    <Button
+        android:id="@+id/show_PRM_areas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PRM"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/my_button"
+        />
+    <Button
+        android:id="@+id/show_all_areas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alla delsystem"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/my_button"
+        />
+
+    <Button
+        android:id="@+id/property_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kap i TSD PRM"
+        android:background="@drawable/my_button"
+        />
+</LinearLayout>
