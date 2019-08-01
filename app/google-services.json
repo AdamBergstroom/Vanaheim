@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "596580275418",
+    "firebase_url": "https://vanaheimwithfirebase.firebaseio.com",
+    "project_id": "vanaheimwithfirebase",
+    "storage_bucket": "vanaheimwithfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596580275418:android:a29907d53dd6e941",
+        "android_client_info": {
+          "package_name": "se.vanaheim.vanaheim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596580275418-sjbhbf52k8fduftnouin1l7bain8mm7e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "se.vanaheim.vanaheim",
+            "certificate_hash": "877aaffe856ccd43cdcd87d12a24395de4295ada"
+          }
+        },
+        {
+          "client_id": "596580275418-7n8u5rm9bqpnt246fi5cvt7cukt6eg18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVk4bqGoMhtolCnS4tCxxhKYKKnDuA1X4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596580275418-7n8u5rm9bqpnt246fi5cvt7cukt6eg18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
