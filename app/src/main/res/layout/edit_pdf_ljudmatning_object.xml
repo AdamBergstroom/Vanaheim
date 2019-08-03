@@ -314,6 +314,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"
+                    />
+
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fab_create_pdf_file"
                     android:layout_width="wrap_content"
@@ -321,7 +329,7 @@
                     android:layout_gravity="bottom|end"
                     android:layout_margin="16dp"
                     android:src="@drawable/export_pdf_filled_50"
-                    app:backgroundTint="@color/colorAccent" />
+                    app:backgroundTint="@color/white" />
             </FrameLayout>
         </RelativeLayout>
     </LinearLayout>

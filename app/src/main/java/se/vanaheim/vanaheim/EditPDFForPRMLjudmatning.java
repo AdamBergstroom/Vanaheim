@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -145,6 +146,9 @@ public class EditPDFForPRMLjudmatning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ProgressBar progressBar = findViewById(R.id.progress_bar);
+                progressBar.setVisibility(View.VISIBLE);
+
                 Toast toast;
 
                 ArrayList<Object> ljudmatningslist;
@@ -173,11 +177,17 @@ public class EditPDFForPRMLjudmatning extends AppCompatActivity {
                     toast.show();
 
                     pdfHandler.sendPDF();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 } catch (Exception e) {
                     toast = Toast.makeText(getApplicationContext(),
                             "Kunde inte skapa PDF",
                             Toast.LENGTH_SHORT);
                     toast.show();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 }
             }
         });

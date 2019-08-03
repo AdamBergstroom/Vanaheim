@@ -131,7 +131,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginScreenActivity.this,
-                                    "Återställning av lösenord har nu skickats till:" + email, Toast.LENGTH_LONG).show();
+                                    "Återställning av lösenord har nu skickats till " + email, Toast.LENGTH_LONG).show();
                         } else{
                             Toast.makeText(LoginScreenActivity.this,
                                     email + " är inte kopplat till appen. Kontakta support för hjälp.", Toast.LENGTH_LONG).show();

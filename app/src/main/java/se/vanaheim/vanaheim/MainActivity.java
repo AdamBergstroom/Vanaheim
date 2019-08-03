@@ -2,14 +2,16 @@ package se.vanaheim.vanaheim;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.SearchManager;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
@@ -26,9 +28,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,30 +43,20 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
 import se.vanaheim.vanaheim.data.ContractAreasDB;
 import se.vanaheim.vanaheim.data.AreaDbHelper;
-import se.vanaheim.vanaheim.data.ContractObjectsDBForENE;
-import se.vanaheim.vanaheim.data.ContractObjectsDBForINF;
-import se.vanaheim.vanaheim.data.ContractObjectsDBForPRMLjudmatning;
 import se.vanaheim.vanaheim.data.HandleDatabases;
-import se.vanaheim.vanaheim.data.ObjectsDBHelperForENE;
-import se.vanaheim.vanaheim.data.ObjectsDBHelperForINF;
-import se.vanaheim.vanaheim.data.ObjectsDBHelperForPRMLjudmatning;
-import se.vanaheim.vanaheim.data.ObjectsDBHelperForPRMLjusmatning;
-import se.vanaheim.vanaheim.data.PropertyListDBHelper;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -80,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final String TAG = "MainActivity";
     private Toolbar mTopToolbar;
     private int objectTypeToDelete;
+
+    private Boolean showInfProjects;
+    private Boolean showEneProjects;
+    private Boolean showPrmProjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             FloatingActionButton fab_objects_list = findViewById(R.id.fab_objects_list);
             FloatingActionButton fab_search_objects = findViewById(R.id.fab_search_button);
+
 
             fab_objects_list.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -137,15 +136,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             });
 
             // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-            mapFragment = (SupportMapFragment) getSupportFragmentManager()
+            // mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mapFragment = (SupportMapFragment) this.getSupportFragmentManager()
                     .findFragmentById(R.id.map);
-
         } catch (Exception e) {
             Toast toast = Toast.makeText(getApplicationContext(),
                     "Något gick fel",
                     Toast.LENGTH_SHORT);
             toast.show();
         }
+
+        showInfProjects = true;
+        showEneProjects = true;
+        showPrmProjects = true;
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -154,10 +157,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
                 // Check if the user exists inside the Firebase Authentication
-                if (mFirebaseUser != null) {
-                    Toast.makeText(MainActivity.this,
-                            "Inloggad", Toast.LENGTH_SHORT).show();
-                } else {
+                if (mFirebaseUser == null) {
                     Toast.makeText(MainActivity.this,
                             "Utloggad", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this, LoginScreenActivity.class);
@@ -248,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         mMap.clear();
+
         restoreAllMarkers();
     }
 
@@ -380,20 +381,47 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         switch (omradeType) {
             case "Delsystem: INF":
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.train_logo_black_30px));
+                if (showInfProjects == true)
+                    createMarker(markerOptions, 1);
                 break;
             case "Delsystem: ENE":
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.train_logo_green_30px));
+                if (showEneProjects == true)
+                    createMarker(markerOptions, 2);
                 break;
             case "Delsystem: PRM":
-                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.train_logo_yellow_30px));
+                if (showPrmProjects == true)
+                    createMarker(markerOptions, 3);
+                break;
+        }
+    }
+
+    private void createMarker(MarkerOptions markerOptions, int classType) {
+
+        int height = 100;
+        int width = 100;
+        Bitmap b;
+
+        switch (classType) {
+            case 1:
+                b = BitmapFactory.decodeResource(getResources(), R.drawable.project_inf_90px);
+                break;
+            case 2:
+                b = BitmapFactory.decodeResource(getResources(), R.drawable.project_ene_90px);
+                break;
+            case 3:
+                b = BitmapFactory.decodeResource(getResources(), R.drawable.project_prm_90px);
+                break;
+            default:
+                b = BitmapFactory.decodeResource(getResources(), R.drawable.project_inf_90px);
                 break;
         }
 
+        Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+        BitmapDescriptor smallMarkerIcon = BitmapDescriptorFactory.fromBitmap(smallMarker);
+        markerOptions.icon(smallMarkerIcon);
+
         markerOptions.anchor(0.2f, 0.2f);
-
         mMap.addMarker(markerOptions);
-
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
             @Override
@@ -608,9 +636,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-
         switch (item.getItemId()) {
-            case R.id.email_support:
+            /*case R.id.email_support:
 
                 try {
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -624,7 +651,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                return true;
+                return true;*/
 
             case R.id.format_database:
 
@@ -674,6 +701,58 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 });
                 builder.setNegativeButton("Avbryt", null);
                 builder.show();
+
+                return true;
+            case R.id.filter_shown_projects:
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.setContentView(R.layout.filter_projects_dialog_window);
+
+                Button filterButton = dialog.findViewById(R.id.done);
+                final CheckBox cbInf = dialog.findViewById(R.id.cb_inf);
+                final CheckBox cbEne = dialog.findViewById(R.id.cb_ene);
+                final CheckBox cbPrm = dialog.findViewById(R.id.cb_prm);
+
+                if (showInfProjects == true)
+                    cbInf.setChecked(true);
+                else
+                    cbInf.setChecked(false);
+
+                if (showEneProjects == true)
+                    cbEne.setChecked(true);
+                else
+                    cbEne.setChecked(false);
+
+                if (showPrmProjects == true)
+                    cbPrm.setChecked(true);
+                else
+                    cbPrm.setChecked(false);
+
+                filterButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (cbInf.isChecked())
+                            showInfProjects = true;
+                        else
+                            showInfProjects = false;
+
+                        if (cbEne.isChecked())
+                            showEneProjects = true;
+                        else
+                            showEneProjects = false;
+
+                        if (cbPrm.isChecked())
+                            showPrmProjects = true;
+                        else
+                            showPrmProjects = false;
+
+                        dialog.dismiss();
+                        currentLocation = null;
+                        mapFragment.getMapAsync(MainActivity.this);
+                    }
+                });
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                dialog.show();
 
                 return true;
             case R.id.search:

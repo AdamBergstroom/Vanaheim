@@ -2,26 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/search"
-        android:title="Search"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_search_black_24dp"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always">
-    </item>
-
     <item
-        android:id="@+id/email_support"
-        android:title="Kontakta support"
-        app:showAsAction="never"/>
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:orderInCategory="100"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always"></item>
 
     <item
         android:id="@+id/format_database"
         android:title="Formatera databasen"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/filter_shown_projects"
+        android:title="Filtrera delsystem"
+        app:showAsAction="never" />
+
     <item
         android:id="@+id/logout"
         android:title="Logga ut"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
 </menu>

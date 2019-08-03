@@ -797,6 +797,22 @@ public class TextSearchForMainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("location", latLng);
+            resultIntent.putExtra("zoom", zoom);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Något blev fel",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        };
+    }
 }
 
 /*

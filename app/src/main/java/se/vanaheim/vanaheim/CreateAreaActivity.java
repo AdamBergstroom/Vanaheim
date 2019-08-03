@@ -37,7 +37,7 @@ public class CreateAreaActivity extends AppCompatActivity {
         setContentView(R.layout.choose_object_in_marker);
 
         latlng = getIntent().getParcelableExtra("location");
-        zoom = getIntent().getFloatExtra("zoom",0);
+        zoom = getIntent().getFloatExtra("zoom", 0);
 
         objectNameId = findViewById(R.id.object_name_id);
         Spinner spinner = findViewById(R.id.spinnerWithObjects);
@@ -54,7 +54,8 @@ public class CreateAreaActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) { }
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
         });
 
         Button button = findViewById(R.id.createButton);
@@ -65,12 +66,12 @@ public class CreateAreaActivity extends AppCompatActivity {
 
                 String objectNameIDText = objectNameId.getText().toString();
 
-                if(objectNameIDText.equals("Unknown") || objectNameIDText.equals("")){
+                if (objectNameIDText.equals("Unknown") || objectNameIDText.equals("")) {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Namn på projekt saknas",
                             Toast.LENGTH_SHORT);
                     toast.show();
-                }else {
+                } else {
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latlng);
@@ -120,5 +121,22 @@ public class CreateAreaActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void onBackPressed() {
+        try {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("location", latlng);
+            resultIntent.putExtra("zoom", zoom);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Något blev fel",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+    }
+
 }
 

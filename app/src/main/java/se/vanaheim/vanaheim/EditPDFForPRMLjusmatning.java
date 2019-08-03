@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -204,6 +205,9 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ProgressBar progressBar = findViewById(R.id.progress_bar);
+                progressBar.setVisibility(View.VISIBLE);
+
                 Toast toast;
 
                 saveValues();
@@ -218,8 +222,12 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
                     toast.show();
 
                     pdfHandler.sendPDF();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 } catch (Exception e) {
                     Toast.makeText(EditPDFForPRMLjusmatning.this, "Kunde inte skapa pdf", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });

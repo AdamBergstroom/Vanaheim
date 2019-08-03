@@ -17,8 +17,6 @@ public class ChooseAreaViewActivity extends AppCompatActivity {
     private LatLng latLng;
     private Float zoom;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +29,7 @@ public class ChooseAreaViewActivity extends AppCompatActivity {
         Button showPropertyList = findViewById(R.id.property_list);
 
         latLng = getIntent().getParcelableExtra("location");
-        zoom = getIntent().getFloatExtra("zoom",0);
+        zoom = getIntent().getFloatExtra("zoom", 0);
 
         showINFAreas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +55,8 @@ public class ChooseAreaViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ChooseAreaViewActivity.this, AreaViewActivity.class);
                 intent.putExtra("objectType", 2);
-                startActivity(intent);            }
+                startActivity(intent);
+            }
         });
 
         showAllAreas.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +96,22 @@ public class ChooseAreaViewActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("location", latLng);
+            resultIntent.putExtra("zoom", zoom);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Något blev fel",
+                    Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }

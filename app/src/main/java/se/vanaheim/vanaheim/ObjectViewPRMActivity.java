@@ -900,7 +900,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.email_support:
+            /*case R.id.email_support:
                 try {
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
                     emailIntent.setType("text/plain");
@@ -913,7 +913,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                return true;
+                return true;*/
             case R.id.send_pdf:
                 try {
                     if (prmLjudmatningButton.isChecked() == true) {
@@ -966,5 +966,23 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void onBackPressed() {
+        try {
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("objectType", objectType);
+            resultIntent.putExtra("location", latLng);
+            resultIntent.putExtra("currentAreaPosition", currentAreaPosition);
+            resultIntent.putExtra("zoom",currentZoom);
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Något gick fel",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
 
 }

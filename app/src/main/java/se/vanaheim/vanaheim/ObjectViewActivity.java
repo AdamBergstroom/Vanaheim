@@ -615,7 +615,7 @@ public class ObjectViewActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.email_support:
+            /*case R.id.email_support:
                 try {
                     Intent emailIntent = new Intent(Intent.ACTION_SEND);
                     emailIntent.setType("text/plain");
@@ -628,7 +628,7 @@ public class ObjectViewActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                return true;
+                return true;*/
             case R.id.send_pdf:
                 try {
                     Intent intent = new Intent(ObjectViewActivity.this, EditPDFForINFAndENE.class);
@@ -672,4 +672,15 @@ public class ObjectViewActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void onBackPressed() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("objectType", objectType);
+        resultIntent.putExtra("location", latLng);
+        resultIntent.putExtra("currentAreaPosition", currentAreaPosition);
+        resultIntent.putExtra("zoom", currentZoom);
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
+    }
+
 }

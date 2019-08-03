@@ -62,8 +62,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:src="@drawable/adding"
-            app:backgroundTint="@color/colorAccent"
-            />
+            app:backgroundTint="@color/white" />
     </FrameLayout>
 
 </LinearLayout>

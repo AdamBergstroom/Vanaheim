@@ -226,8 +226,10 @@ public class PropertyListViewActivity extends AppCompatActivity {
     public void showDialog() {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Ta bort från listan");
-        String message = "Är du säker på att du vill ta bort objektet tillfälligt från listan?";
+        builder.setTitle("Ta bort del temporärt från listan");
+        String message = "Är du säker på att du vill ta bort delen temporärt från listan? " +
+                "Den borttagna delen kommer inte att skrivas ut i PDF-dokumentet. " +
+                "Återställ alla delar i listan genom att gå tillbaka till tidigare fönster.";
         builder.setMessage(message);
         builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -237,8 +239,8 @@ public class PropertyListViewActivity extends AppCompatActivity {
                 //createListView();
 
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Objektet är tillfälligt borttaget",
-                        Toast.LENGTH_SHORT);
+                        "Delen är tillfälligt borttaget från listan",
+                        Toast.LENGTH_LONG);
 
                 toast.show();
             }
@@ -250,10 +252,12 @@ public class PropertyListViewActivity extends AppCompatActivity {
     public void showDialogCleanList() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setTitle("Formatera listan");
-        String message = "Är du säker på att du vill formatera hela listan? Alla sparade värden och objekt kommer att återställas.";
+        builder.setTitle("Återställ alla värden i listan");
+        String message = "Alla sparade värden i listans kvarstående delar kommer att återställas på nytt. " +
+                "Tidigare borttagna delar återställs inte. " +
+                "Gå tillbaka till tidigare fönster för återställning av alla delar i listan.";
         builder.setMessage(message);
-        builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
 
                 try {
@@ -263,13 +267,13 @@ public class PropertyListViewActivity extends AppCompatActivity {
                     createListView();
 
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Listan är formaterad",
+                            "Alla värden i listan är återställd",
                             Toast.LENGTH_SHORT);
 
                     toast.show();
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Gick inte att formatera",
+                            "Gick inte att återställa värdena i listan",
                             Toast.LENGTH_SHORT);
 
                     toast.show();
@@ -283,7 +287,7 @@ public class PropertyListViewActivity extends AppCompatActivity {
     public void showDialogForListSize() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        String message = "Borttagna Kap i TSD PRM kommer att återställas";
+        String message = "Alla borttagna Kap i TSD PRM kommer att återställas på nytt";
         builder.setMessage(message);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
@@ -307,13 +311,13 @@ public class PropertyListViewActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.email_support:
+            /*case R.id.email_support:
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("text/plain");
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"adam.bergstroom@hotmail.com"});
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Förklara problemet så tydligt som möjligt.");
                 startActivity(Intent.createChooser(emailIntent, "Pick an Email provider"));
-                return true;
+                return true;*/
             case R.id.send_pdf:
                 PropertyListObjects propertyList = databases.recoverPropertyList();
                 pdfHandler.deletePDFFile();

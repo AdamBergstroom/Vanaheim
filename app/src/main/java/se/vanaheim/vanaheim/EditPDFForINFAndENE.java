@@ -15,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -174,6 +175,9 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
 
                 Toast toast;
 
+                ProgressBar progressBar = findViewById(R.id.progress_bar);
+                progressBar.setVisibility(View.VISIBLE);
+
                 setValuesFromLayout();
                 try {
                     pdfHandler.deletePDFFile();
@@ -185,11 +189,17 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
                     toast.show();
 
                     pdfHandler.sendPDF();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 } catch (Exception e) {
                     toast = Toast.makeText(getApplicationContext(),
                             "Kunde inte skapa PDF",
                             Toast.LENGTH_SHORT);
                     toast.show();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 }
             }
         });
@@ -257,6 +267,9 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ProgressBar progressBar = findViewById(R.id.progress_bar);
+                progressBar.setVisibility(View.VISIBLE);
+
                 Toast toast;
 
                 setValuesFromLayout();
@@ -270,11 +283,17 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
                     toast.show();
 
                     pdfHandler.sendPDF();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 } catch (Exception e) {
                     toast = Toast.makeText(getApplicationContext(),
                             "Kunde inte skapa PDF",
                             Toast.LENGTH_SHORT);
                     toast.show();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
                 }
             }
         });
