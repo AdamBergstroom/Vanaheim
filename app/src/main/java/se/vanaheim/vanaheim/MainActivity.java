@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -43,6 +44,8 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,6 +66,9 @@ import se.vanaheim.vanaheim.data.PropertyListDBHelper;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
 
     private GoogleMap mMap;
     private float zoom;
@@ -140,6 +146,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     Toast.LENGTH_SHORT);
             toast.show();
         }
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                // Check if the user exists inside the Firebase Authentication
+                if (mFirebaseUser != null) {
+                    Toast.makeText(MainActivity.this,
+                            "Inloggad", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this,
+                            "Utloggad", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, LoginScreenActivity.class);
+                    i.putExtra("logout", true);
+                    startActivity(i);
+                }
+            }
+        };
     }
 
     @Override
@@ -280,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         longitude = latLng.longitude;
 
         databases.saveAreaMarker(projectName, objectTypeInteger, latitude, longitude);
-        databases.createVaxlarOchSpar(latitude,longitude);
+        databases.createVaxlarOchSpar(latitude, longitude);
     }
 
     //Använder sig av Drawmarker för varje projekt som hittas.
@@ -352,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         String omradeType = markerOptions.getSnippet();
 
-        switch (omradeType){
+        switch (omradeType) {
             case "Delsystem: INF":
                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.train_logo_black_30px));
                 break;
@@ -558,7 +584,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                     String content = searchEditText.getText().toString();
 
-                    if(!content.equals("")) {
+                    if (!content.equals("")) {
                         try {
                             geoLocate(view, content);
                         } catch (IOException e) {
@@ -652,9 +678,38 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 return true;
             case R.id.search:
                 return true;
+            case R.id.logout:
+                showDialogLogout();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        showDialogLogout();
+    }
+
+    private void showDialogLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Logga ut");
+        String message = "Vill du logga ut?";
+        builder.setMessage(message);
+        builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                mFirebaseAuth.getInstance().signOut();
+            }
+        });
+        builder.setNegativeButton("Avbryt", null);
+        builder.show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
 }
 /*

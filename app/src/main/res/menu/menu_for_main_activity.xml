@@ -19,5 +19,9 @@
         android:id="@+id/format_database"
         android:title="Formatera databasen"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/logout"
+        android:title="Logga ut"
+        app:showAsAction="never"/>
 
 </menu>
