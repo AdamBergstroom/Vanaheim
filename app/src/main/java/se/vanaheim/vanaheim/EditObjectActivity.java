@@ -1,6 +1,8 @@
 package se.vanaheim.vanaheim;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,28 +47,18 @@ public class EditObjectActivity extends AppCompatActivity {
     private TextWatcher inputTextWatcherForPRMLjudmatning;
     private Toast toast;
     private int positionInListView;
+    private boolean userIsInteracting;
 
     //INF
-    private EditText kmNummer;
-    private EditText sparvidd;
-    private EditText ralsforhojning;
-    private EditText slipersavstand;
-    private EditText sparavstand;
-    private EditText friaRummet;
+    private EditText kmNummer, sparvidd, ralsforhojning, slipersavstand, sparavstand, friaRummet;
 
     //ENE
-    private EditText stolpnummer;
+    private EditText stolpnummer, objectsChosenForENE, hojdAvKontakttrad, avvikelseISidled, hojdAvUtliggarror, upphojdAvTillsatsror;
     private Spinner spinnerForObjectENE;
-    private EditText objectsChosenForENE;
-    private EditText hojdAvKontakttrad; //A
-    private EditText avvikelseISidled;
-    private EditText hojdAvUtliggarror; //B
-    private EditText upphojdAvTillsatsror;  //visar värdet av B-A
+
 
     //PRM Ljudmätning
-    private EditText plats;
-    private EditText objektForPRMLjudmatning;
-    private EditText arvarde;
+    private EditText plats, objektForPRMLjudmatning, arvarde;
     private TextView borvarde; //A
     private TextView medelvarde; //B
     private TextView avvikelse; //visar värdet av B-A
@@ -155,22 +147,62 @@ public class EditObjectActivity extends AppCompatActivity {
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Boolean valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
-                Boolean valueBISEmpty = hojdAvUtliggarror.getText().toString().isEmpty();
 
-                try {
-                    if (valueAISEmpty == false && valueBISEmpty == false) {
-                        //B-A
-                        double value = Double.parseDouble(String.valueOf(hojdAvUtliggarror.getText()))-
-                                Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
-                        String valueInString = String.format("%.2f", value);
-                        upphojdAvTillsatsror.setText(valueInString);
+                Boolean valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
+
+                if (valueAISEmpty == false) {
+                    try {
+                        double inputValueOfHojdAvKontakttråd = Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
+                        if (inputValueOfHojdAvKontakttråd > 5650 || inputValueOfHojdAvKontakttråd < 5250) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(EditObjectActivity.this);
+
+                            builder.setTitle("Kontaktledningen");
+                            String message = "Värdet på kontaktledningen är antingen över 5650 eller under 5250";
+                            builder.setMessage(message);
+                            builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Boolean valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
+                                    Boolean valueBISEmpty = hojdAvUtliggarror.getText().toString().isEmpty();
+
+                                    try {
+                                        if (valueAISEmpty == false && valueBISEmpty == false) {
+                                            //B-A
+                                            double value = Double.parseDouble(String.valueOf(hojdAvUtliggarror.getText())) -
+                                                    Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
+                                            String valueInString = String.format("%.2f", value);
+                                            upphojdAvTillsatsror.setText(valueInString);
+                                        }
+
+                                    } catch (NumberFormatException e) {
+
+                                    }
+                                }
+                            });
+                            builder.show();
+                        } else {
+
+                            valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
+                            Boolean valueBISEmpty = hojdAvUtliggarror.getText().toString().isEmpty();
+
+                            try {
+                                if (valueAISEmpty == false && valueBISEmpty == false) {
+                                    //B-A
+                                    double value = Double.parseDouble(String.valueOf(hojdAvUtliggarror.getText())) -
+                                            Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
+                                    String valueInString = String.format("%.2f", value);
+                                    upphojdAvTillsatsror.setText(valueInString);
+                                }
+
+                            } catch (NumberFormatException e) {
+
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        toast = Toast.makeText(getApplicationContext(),
+                                "Fel format ifyllt",
+                                Toast.LENGTH_LONG);
+                        toast.show();
                     }
-                } catch (NumberFormatException e) {
-                    toast = Toast.makeText(getApplicationContext(),
-                            "Fel format ifyllt",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
                 }
             }
         };
@@ -252,10 +284,11 @@ public class EditObjectActivity extends AppCompatActivity {
                 List<String> list = new ArrayList<String>();
                 list.add("");
                 list.add("Kontaktledningsstolpen jordas med längsgående jordlina 212 mm2 AL-lina");
+                list.add("Kontaktledningsstolpe jordas med 1x70 mm2 Al-lina till S-räl");
+                list.add("Kontaktledningsstolpe skyddjordas till S-räl med 75 mm2 Al-lina");
                 list.add("J-jord jordas till S-räl med 1x75mm2 Al-lina");
                 list.add("Tvärförbindning utförs med 1x75mm2 Al-lina");
                 list.add("Mellan transformator jordas till S-Räl");
-                list.add("Kontaktledningsstolpe jordas med 1x70 mm2 Al-lina till S-räl");
                 list.add("Skåp jordas med 50 mm2 Cu-lina eller 70mm2 Al-lina till S-räl");
                 list.add("Frånskiljare");
                 list.add("Transformator jordas 1x70mm2 Al-lina till S-räl");
@@ -279,14 +312,19 @@ public class EditObjectActivity extends AppCompatActivity {
                 spinnerForObjectENE.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (position != 0) {
-                            String item = parent.getItemAtPosition(position).toString();
-                            String currentChosenObjectsFromENE = objectsChosenForENE.getText().toString();
-                            if (currentChosenObjectsFromENE.equals(""))
-                                currentChosenObjectsFromENE += item;
-                            else
-                                currentChosenObjectsFromENE += "\n\n" + item;
-                            objectsChosenForENE.setText(currentChosenObjectsFromENE);
+                        if (userIsInteracting) {
+                            if (position != 0) {
+
+                                String item = parent.getItemAtPosition(position).toString();
+                                String currentChosenObjectsFromENE = objectsChosenForENE.getText().toString();
+
+                                if (currentChosenObjectsFromENE.equals(""))
+                                    currentChosenObjectsFromENE += item;
+                                else
+                                    currentChosenObjectsFromENE += "\n\n" + item;
+
+                                objectsChosenForENE.setText(currentChosenObjectsFromENE);
+                            }
                         }
                     }
 
@@ -396,6 +434,12 @@ public class EditObjectActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        userIsInteracting = true;
     }
 
     public void insertRowValues() {

@@ -139,7 +139,7 @@ public class HandlePDF {
             // add the paragraph to the document
             document.add(paragraph);
 
-            float[] columnWidths2 = {2f, 2f, 2f, 2f, 2f, 2f, 2f};
+            float[] columnWidths2 = {2f, 2f, 2f, 2f, 2f, 2f, 2f, 2f};
 
             //create PDF table with the given widths
             PdfPTable table2 = new PdfPTable(columnWidths2);
@@ -149,58 +149,31 @@ public class HandlePDF {
             Paragraph paragraph2 = new Paragraph();
 
             insertCellSideBorders(table2, "Spår:", Element.ALIGN_LEFT, 1, f10, 4);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getSpar()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getSpar()), Element.ALIGN_LEFT, 2, f10, 1);
             insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, f10, 3);
 
             insertCellSideBorders(table2, "Datum:", Element.ALIGN_LEFT, 1, f10, 4);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getDatum()), Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table2, "Mätinstrument:", Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getMatinstrument()), Element.ALIGN_LEFT, 3, f10, 3);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getDatum()), Element.ALIGN_LEFT, 3, f10, 1);
+            insertCellSideBorders(table2, "Mätinstrument:", Element.ALIGN_LEFT, 2, f10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getMatinstrument()), Element.ALIGN_LEFT, 2, f10, 3);
 
             insertCellSideBorders(table2, "Klockslag:", Element.ALIGN_LEFT, 1, f10, 4);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getTid()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getTid()), Element.ALIGN_LEFT, 2, f10, 1);
             insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, f10, 3);
 
             insertCellSideBorders(table2, "Väder:", Element.ALIGN_LEFT, 1, f10, 4);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getVader()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getVader()), Element.ALIGN_LEFT, 2, f10, 1);
             insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, f10, 3);
 
             insertCellSideBorders(table2, "Temperatur:", Element.ALIGN_LEFT, 1, f10, 4);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getTemperatur()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getTemperatur()), Element.ALIGN_LEFT, 2, f10, 1);
             insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, f10, 3);
 
             insertCellSideBorders(table2, "Kontrollanter:", Element.ALIGN_LEFT, 1, f10, 4);
-            insertCellSideBorders(table2, String.valueOf(pdfValues.getKontrollanter()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getKontrollanter()), Element.ALIGN_LEFT, 2, f10, 1);
             insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, f10, 3);
 
-            //insert column headings
-            insertCell(table2, "Km-tal", Element.ALIGN_CENTER, 1, f10);
-            insertCell(table2, "Spårvidd\n(mm)", Element.ALIGN_CENTER, 1, f10);
-            insertCell(table2, "Rälsförhöjning\n(mm)", Element.ALIGN_CENTER, 1, f10);
-            insertCell(table2, "Slipersavstånd\nm/(antal/xm)", Element.ALIGN_CENTER, 1, f10);
-            insertCell(table2, "Spåravstånd\n(till närmast spår)", Element.ALIGN_CENTER, 1, f10);
-            insertCell(table2, "Fria rummet\nAvstånd till hinder", Element.ALIGN_CENTER, 1, f10);
-            insertCell(table2, "Kommentar\n(Anm)", Element.ALIGN_CENTER, 1, f10);
-
-            for (int i = 0; i < objectList.size(); i++) {
-                Object object = objectList.get(i);
-                //Km-tal
-                insertCell(table2, String.valueOf(object.getKmNummer()), Element.ALIGN_LEFT, 1, f10);
-                //Spårvidd (mm)
-                insertCell(table2, String.valueOf(object.getSparvidd()), Element.ALIGN_LEFT, 1, f10);
-                //Rälsförhöjning (mm)
-                insertCell(table2, String.valueOf(object.getRalsforhojning()), Element.ALIGN_LEFT, 1, f10);
-                //Slipersavstånd m/(antal/xm)
-                insertCell(table2, String.valueOf(object.getSlipersavstand()), Element.ALIGN_LEFT, 1, f10);
-                //Spåravstånd (till närmaste spår)
-                insertCell(table2, String.valueOf(object.getSparavstand()), Element.ALIGN_LEFT, 1, f10);
-                //Fria rummet Avstånd till hinder
-                insertCell(table2, String.valueOf(object.getFriaRummet()), Element.ALIGN_LEFT, 1, f10);
-                //Kommentar (Anm)
-                insertCell(table2, String.valueOf(object.getComments()), Element.ALIGN_LEFT, 1, f10);
-            }
-
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 8, f10, 0);
 
             table2.setHeaderRows(1);
             //add the PDF table to the paragraph
@@ -208,7 +181,9 @@ public class HandlePDF {
             // add the paragraph to the document
             document.add(paragraph2);
 
-            float[] columnWidths3 = {3f, 1f};
+            //**************************************************************************************
+
+            float[] columnWidths3 = {2f, 2f, 2f, 2f, 2f, 2f, 2f, 2f};
 
             //create PDF table with the given widths
             PdfPTable table3 = new PdfPTable(columnWidths3);
@@ -217,45 +192,96 @@ public class HandlePDF {
 
             Paragraph paragraph3 = new Paragraph();
 
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
+            //insert column headings
+            insertCell(table3, "Km-tal", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Spårvidd\n(mm)", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Rälsförhöjning\n(mm)", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Slipersavstånd\nm/(antal/xm)", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Spåravstånd\n(till närmast spår)", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Fria rummet\nAvstånd till hinder", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Status", Element.ALIGN_CENTER, 1, f10);
+            insertCell(table3, "Kommentar\n(Anm)", Element.ALIGN_CENTER, 1, f10);
 
-            insertCellSideBorders(table3, "Spårkomponenter:", Element.ALIGN_LEFT, 2, header, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, String.valueOf(pdfValues.getSparkomponenter()), Element.ALIGN_LEFT, 2, f10, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, "Växlar:", Element.ALIGN_LEFT, 2, header, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, String.valueOf(pdfValues.getVaxlar()), Element.ALIGN_LEFT, 2, bf10, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, String.valueOf(pdfValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 2);
-
+            for (int i = 0; i < objectList.size(); i++) {
+                Object object = objectList.get(i);
+                //Km-tal
+                insertCell(table3, String.valueOf(object.getKmNummer()), Element.ALIGN_LEFT, 1, f10);
+                //Spårvidd (mm)
+                insertCell(table3, String.valueOf(object.getSparvidd()), Element.ALIGN_LEFT, 1, f10);
+                //Rälsförhöjning (mm)
+                insertCell(table3, String.valueOf(object.getRalsforhojning()), Element.ALIGN_LEFT, 1, f10);
+                //Slipersavstånd m/(antal/xm)
+                insertCell(table3, String.valueOf(object.getSlipersavstand()), Element.ALIGN_LEFT, 1, f10);
+                //Spåravstånd (till närmaste spår)
+                insertCell(table3, String.valueOf(object.getSparavstand()), Element.ALIGN_LEFT, 1, f10);
+                //Fria rummet Avstånd till hinder
+                insertCell(table3, String.valueOf(object.getFriaRummet()), Element.ALIGN_LEFT, 1, f10);
+                //Status
+                int completed = object.getCompleted();
+                if (completed == 0)
+                    insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
+                else
+                    insertCell(table3, "OK", Element.ALIGN_CENTER, 1, f10);
+                //Kommentar (Anm)
+                insertCell(table3, String.valueOf(object.getComments()), Element.ALIGN_LEFT, 1, f10);
+            }
 
             table3.setHeaderRows(1);
             //add the PDF table to the paragraph
             paragraph3.add(table3);
             // add the paragraph to the document
             document.add(paragraph3);
+
+            //**************************************************************************************
+
+            float[] columnWidths4 = {3f, 1f};
+
+            //create PDF table with the given widths
+            PdfPTable table4 = new PdfPTable(columnWidths4);
+            // set table width a percentage of the page width
+            table4.setWidthPercentage(100f);
+
+            Paragraph paragraph4 = new Paragraph();
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, "Spårkomponenter:", Element.ALIGN_LEFT, 2, header, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, String.valueOf(pdfValues.getSparkomponenter()), Element.ALIGN_LEFT, 2, f10, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, "Växlar:", Element.ALIGN_LEFT, 2, header, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, String.valueOf(pdfValues.getVaxlar()), Element.ALIGN_LEFT, 2, bf10, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, String.valueOf(pdfValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 2);
+
+
+            table4.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph4.add(table4);
+            // add the paragraph to the document
+            document.add(paragraph4);
 
         } catch (DocumentException de) {
             Log.e("PDFCreator", "DocumentException:" + de);
@@ -390,32 +416,7 @@ public class HandlePDF {
             insertCellSideBorders(table2, String.valueOf(pdfValues.getKontrollanter()), Element.ALIGN_LEFT, 1, f10, 1);
             insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, bf10, 3);
 
-            //insert column headings
-            insertCell(table2, "Stople Nr.", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Objekt", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Höjd av kontakttråd\n(mm)", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Avvikelse i sidled\n(mm)", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Höjd av underrör\n(mm)", Element.ALIGN_CENTER, 1, bf10); //Höjd av utliggarrör är bytt till Höjd av underrör
-            insertCell(table2, "Trådläget\n(mm)", Element.ALIGN_CENTER, 1, bf10); //Upphöjd av tillsatsrör bytt till Trådläget
-            insertCell(table2, "Kommentar", Element.ALIGN_CENTER, 1, bf10);
-
-            for (int i = 0; i < objectList.size(); i++) {
-                Object object = objectList.get(i);
-                //Stolpnummer
-                insertCell(table2, String.valueOf(object.getStolpnummer()), Element.ALIGN_LEFT, 1, f10);
-                //Objekt
-                insertCell(table2, String.valueOf(object.getObjektForENE()), Element.ALIGN_LEFT, 1, f10);
-                //Höjd av kontakttråd(mm)
-                insertCell(table2, String.valueOf(object.getHojdAvKontakttrad()), Element.ALIGN_LEFT, 1, f10);
-                //Avvikelse i sidled(mm)
-                insertCell(table2, String.valueOf(object.getAvvikelseISidled()), Element.ALIGN_LEFT, 1, f10);
-                //Höjd av utliggarrör (mm)
-                insertCell(table2, String.valueOf(object.getHojdAvUtliggarror()), Element.ALIGN_LEFT, 1, f10);
-                //Upphöjd av tillsatsrör (mm)
-                insertCell(table2, String.valueOf(object.getUpphojdAvTillsatsror()), Element.ALIGN_LEFT, 1, f10);
-                //Kommentar
-                insertCell(table2, String.valueOf(object.getComments()), Element.ALIGN_LEFT, 1, f10);
-            }
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 7, bf10, 0);
 
             table2.setHeaderRows(1);
             //add the PDF table to the paragraph
@@ -423,7 +424,8 @@ public class HandlePDF {
             // add the paragraph to the document
             document.add(paragraph2);
 
-            float[] columnWidths3 = {3f, 1f};
+            //**************************************************************************************
+            float[] columnWidths3 = {2f, 2f, 2f, 2f, 2f, 2f, 2f, 2f};
 
             //create PDF table with the given widths
             PdfPTable table3 = new PdfPTable(columnWidths3);
@@ -432,24 +434,288 @@ public class HandlePDF {
 
             Paragraph paragraph3 = new Paragraph();
 
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
+            //insert column headings
+            insertCell(table3, "Stople Nr.", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Objekt", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Höjd av kontakttråd\n(mm)", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Avvikelse i sidled\n(mm)", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Höjd av underrör\n(mm)", Element.ALIGN_CENTER, 1, bf10); //Höjd av utliggarrör är bytt till Höjd av underrör
+            insertCell(table3, "Trådläget\n(mm)", Element.ALIGN_CENTER, 1, bf10); //Upphöjd av tillsatsrör bytt till Trådläget
+            insertCell(table3, "Status", Element.ALIGN_CENTER, 1, bf10); //Upphöjd av tillsatsrör bytt till Trådläget
+            insertCell(table3, "Kommentar", Element.ALIGN_CENTER, 1, bf10);
 
-            insertCellSideBorders(table3, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, String.valueOf(pdfValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 2);
+            for (int i = 0; i < objectList.size(); i++) {
+                Object object = objectList.get(i);
+                //Stolpnummer
+                insertCell(table3, String.valueOf(object.getStolpnummer()), Element.ALIGN_LEFT, 1, f10);
+                //Objekt
+                insertCell(table3, String.valueOf(object.getObjektForENE()), Element.ALIGN_LEFT, 1, f10);
+                //Höjd av kontakttråd(mm)
+                insertCell(table3, String.valueOf(object.getHojdAvKontakttrad()), Element.ALIGN_LEFT, 1, f10);
+                //Avvikelse i sidled(mm)
+                insertCell(table3, String.valueOf(object.getAvvikelseISidled()), Element.ALIGN_LEFT, 1, f10);
+                //Höjd av utliggarrör (mm)
+                insertCell(table3, String.valueOf(object.getHojdAvUtliggarror()), Element.ALIGN_LEFT, 1, f10);
+                //Upphöjd av tillsatsrör (mm)
+                insertCell(table3, String.valueOf(object.getUpphojdAvTillsatsror()), Element.ALIGN_LEFT, 1, f10);
+                //Status
+                int completed = object.getCompleted();
+                if (completed == 0)
+                    insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
+                else
+                    insertCell(table3, "OK", Element.ALIGN_CENTER, 1, f10);
+                //Kommentar
+                insertCell(table3, String.valueOf(object.getComments()), Element.ALIGN_LEFT, 1, f10);
+            }
 
             table3.setHeaderRows(1);
             //add the PDF table to the paragraph
             paragraph3.add(table3);
             // add the paragraph to the document
             document.add(paragraph3);
+            //**************************************************************************************
+
+            float[] columnWidths4 = {3f, 1f};
+
+            //create PDF table with the given widths
+            PdfPTable table4 = new PdfPTable(columnWidths4);
+            // set table width a percentage of the page width
+            table4.setWidthPercentage(100f);
+
+            Paragraph paragraph4 = new Paragraph();
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, String.valueOf(pdfValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 2);
+
+            table4.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph4.add(table4);
+            // add the paragraph to the document
+            document.add(paragraph4);
+
+
+        } catch (DocumentException de) {
+            Log.e("PDFCreator", "DocumentException:" + de);
+        } catch (IOException e) {
+            Log.e("PDFCreator", "ioException:" + e);
+        } finally {
+            document.close();
+        }
+    }
+
+    public void createPDFForENEObjectsVersionTwo(ArrayList<Object> objectList, EditPDFObject pdfValues) {
+
+        com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+
+        try {
+
+            //special font sizes
+            Font bfBold12 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, new BaseColor(0, 0, 0));
+            Font bf10 = new Font(Font.FontFamily.TIMES_ROMAN, 10);
+            Font bf8 = new Font(Font.FontFamily.TIMES_ROMAN, 8);
+
+            Font header = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.BOLD | Font.UNDERLINE);
+
+            File file = new File(dir, "Vanaheim.pdf");
+            FileOutputStream fOut = new FileOutputStream(file);
+
+            PdfWriter.getInstance(document, fOut);
+
+            //document header attributes
+            document.addAuthor("Vanaheim");
+            document.addCreationDate();
+            document.addProducer();
+            document.addCreator("Vanaheim");
+            document.addTitle("Checklista för ENE-kontroll");
+            document.setPageSize(PageSize.LETTER);
+
+            //open the document
+            document.open();
+
+            BaseFont bf = BaseFont.createFont("assets/freesans.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+            Font f8 = new Font(bf, 8);
+
+            BaseFont bf2 = BaseFont.createFont("assets/freesans.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+            Font f10 = new Font(bf2, 10);
+
+            //specify column widths
+            float[] columnWidths = {2f, 1f, 1f, 1f, 1f, 1f};
+
+            //create PDF table with the given widths
+            PdfPTable table = new PdfPTable(columnWidths);
+            // set table width a percentage of the page width
+            table.setWidthPercentage(100f);
+
+            Paragraph paragraph = new Paragraph();
+
+            try {
+                document.open();
+                Drawable d = context.getResources().getDrawable(R.drawable.vanaheim_logga);
+                BitmapDrawable bitDw = ((BitmapDrawable) d);
+                Bitmap bmp = bitDw.getBitmap();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.PNG, 30, stream);
+                Image image = Image.getInstance(stream.toByteArray());
+
+                int indentation = 0;
+                float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                        - document.rightMargin() - indentation) / image.getWidth()) * 20;
+                image.scalePercent(scaler);
+                paragraph.add(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //Måste ha en paragraf, annars kraschar formatet: The document has no pages
+            paragraph.add("Checklista för ENE-kontroll");
+
+            insertCell(table, "Projektnummer", Element.ALIGN_LEFT, 1, bf8);
+            insertCell(table, "Dokumentnummer", Element.ALIGN_LEFT, 1, bf8);
+            insertCell(table, "Ansvarig", Element.ALIGN_LEFT, 1, bf8);
+            insertCell(table, "Mätdatum", Element.ALIGN_LEFT, 1, bf8);
+            insertCell(table, "Beställaren", Element.ALIGN_LEFT, 1, bf8);
+            insertCell(table, "Referens", Element.ALIGN_LEFT, 1, bf8);
+
+            insertCell(table, String.valueOf(pdfValues.getProjektnummer()), Element.ALIGN_LEFT, 1, f10);
+            insertCell(table, String.valueOf(pdfValues.getDokumentnummer()), Element.ALIGN_LEFT, 1, f10);
+            insertCell(table, String.valueOf(pdfValues.getAnsvarig()), Element.ALIGN_LEFT, 1, f10);
+            insertCell(table, String.valueOf(pdfValues.getMatdatum()), Element.ALIGN_LEFT, 1, f10);
+            insertCell(table, String.valueOf(pdfValues.getBestallare()), Element.ALIGN_LEFT, 1, f10);
+            insertCell(table, String.valueOf(pdfValues.getReferens()), Element.ALIGN_LEFT, 1, f10);
+
+            table.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph.add(table);
+            // add the paragraph to the document
+            document.add(paragraph);
+
+            float[] columnWidths2 = {2f, 2f, 2f, 2f, 2f, 2f, 2f};
+
+            //create PDF table with the given widths
+            PdfPTable table2 = new PdfPTable(columnWidths2);
+            // set table width a percentage of the page width
+            table2.setWidthPercentage(100f);
+
+            Paragraph paragraph2 = new Paragraph();
+
+            insertCellSideBorders(table2, "Spår:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getSpar()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, bf10, 3);
+
+            insertCellSideBorders(table2, "Datum:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getDatum()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, "Mätinstrument:", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getMatinstrument()), Element.ALIGN_LEFT, 3, f10, 3);
+
+            insertCellSideBorders(table2, "Klockslag:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getTid()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, bf10, 3);
+
+            insertCellSideBorders(table2, "Väder:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getVader()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, bf10, 3);
+
+            insertCellSideBorders(table2, "Temperatur:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getTemperatur()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, bf10, 3);
+
+            insertCellSideBorders(table2, "Kontrollanter:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfValues.getKontrollanter()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 5, bf10, 3);
+
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 7, bf10, 0);
+
+            table2.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph2.add(table2);
+            // add the paragraph to the document
+            document.add(paragraph2);
+
+            //**************************************************************************************
+            float[] columnWidths3 = {2f, 2f, 2f, 2f, 2f, 2f};
+
+            //create PDF table with the given widths
+            PdfPTable table3 = new PdfPTable(columnWidths3);
+            // set table width a percentage of the page width
+            table3.setWidthPercentage(100f);
+
+            Paragraph paragraph3 = new Paragraph();
+
+            //insert column headings
+            insertCell(table3, "Stople Nr.", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Objekt", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Höjd av kontakttråd\n(mm)", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Avvikelse i sidled\n(mm)", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Status", Element.ALIGN_CENTER, 1, bf10); //Upphöjd av tillsatsrör bytt till Trådläget
+            insertCell(table3, "Kommentar", Element.ALIGN_CENTER, 1, bf10);
+
+            for (int i = 0; i < objectList.size(); i++) {
+                Object object = objectList.get(i);
+                //Stolpnummer
+                insertCell(table3, String.valueOf(object.getStolpnummer()), Element.ALIGN_LEFT, 1, f10);
+                //Objekt
+                insertCell(table3, String.valueOf(object.getObjektForENE()), Element.ALIGN_LEFT, 1, f10);
+                //Höjd av kontakttråd(mm)
+                insertCell(table3, String.valueOf(object.getHojdAvKontakttrad()), Element.ALIGN_LEFT, 1, f10);
+                //Avvikelse i sidled(mm)
+                insertCell(table3, String.valueOf(object.getAvvikelseISidled()), Element.ALIGN_LEFT, 1, f10);
+                //Status
+                int completed = object.getCompleted();
+                if (completed == 0)
+                    insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
+                else
+                    insertCell(table3, "OK", Element.ALIGN_CENTER, 1, f10);
+                //Kommentar
+                insertCell(table3, String.valueOf(object.getComments()), Element.ALIGN_LEFT, 1, f10);
+            }
+
+            table3.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph3.add(table3);
+            // add the paragraph to the document
+            document.add(paragraph3);
+            //**************************************************************************************
+
+            float[] columnWidths4 = {3f, 1f};
+
+            //create PDF table with the given widths
+            PdfPTable table4 = new PdfPTable(columnWidths4);
+            // set table width a percentage of the page width
+            table4.setWidthPercentage(100f);
+
+            Paragraph paragraph4 = new Paragraph();
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, String.valueOf(pdfValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 2);
+
+            table4.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph4.add(table4);
+            // add the paragraph to the document
+            document.add(paragraph4);
 
 
         } catch (DocumentException de) {
@@ -498,13 +764,12 @@ public class HandlePDF {
             Font f10 = new Font(bf2, 10);
 
             //specify column widths
-            float[] columnWidths = {2f, 1f, 2f, 1f, 2f, 1f};
+            float[] columnWidths = {2f, 2f, 2f, 1f, 2f, 1f};
 
             //create PDF table with the given widths
             PdfPTable table = new PdfPTable(columnWidths);
             // set table width a percentage of the page width
             table.setWidthPercentage(100f);
-
 
             Paragraph paragraph = new Paragraph();
 
@@ -544,31 +809,6 @@ public class HandlePDF {
             insertCell(table, String.valueOf(pdfObjectValues.getBestallare()), Element.ALIGN_LEFT, 1, f10);
             insertCell(table, String.valueOf(pdfObjectValues.getReferens()), Element.ALIGN_LEFT, 1, f10);
 
-            insertCellSideBorders(table, "", Element.ALIGN_LEFT, 6, bf10, 0);
-
-            insertCellSideBorders(table, "Datum:", Element.ALIGN_LEFT, 1, bf10, 4);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getDatum()), Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table, "Mätinstrumment:", Element.ALIGN_LEFT, 1, bf10, 1);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getMatinstrument()), Element.ALIGN_LEFT, 3, f10, 3);
-
-            insertCellSideBorders(table, "Klockslag:", Element.ALIGN_LEFT, 1, bf10, 4);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getTid()), Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table, "Kalibreringsinstrument:", Element.ALIGN_LEFT, 1, bf10, 1);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getKalibreringsinstrument()), Element.ALIGN_LEFT, 3, f10, 3);
-
-            insertCellSideBorders(table, "Väder:", Element.ALIGN_LEFT, 1, bf10, 4);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getVader()), Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table, "Testsignal:", Element.ALIGN_LEFT, 1, bf10, 1);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getTestsignal()), Element.ALIGN_LEFT, 3, f10, 3);
-
-            insertCellSideBorders(table, "Temperatur:", Element.ALIGN_LEFT, 1, bf10, 4);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getTemperatur()), Element.ALIGN_LEFT, 1, f10, 1);
-            insertCellSideBorders(table, "Signalkälla:", Element.ALIGN_LEFT, 1, bf10, 1);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getSignalkalla()), Element.ALIGN_LEFT, 3, f10, 3);
-
-            insertCellSideBorders(table, "", Element.ALIGN_LEFT, 2, bf10, 4);
-            insertCellSideBorders(table, "Bakgrund STIPA:", Element.ALIGN_LEFT, 1, bf10, 1);
-            insertCellSideBorders(table, String.valueOf(pdfObjectValues.getBakgrundStipa()), Element.ALIGN_LEFT, 3, f10, 3);
 
             table.setHeaderRows(1);
             //add the PDF table to the paragraph
@@ -584,17 +824,62 @@ public class HandlePDF {
             // set table width a percentage of the page width
             table2.setWidthPercentage(100f);
 
-
             Paragraph paragraph2 = new Paragraph();
 
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 7, bf10, 0);
+
+            insertCellSideBorders(table2, "Datum:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getDatum()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "Mätinstrumment:", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getMatinstrument()), Element.ALIGN_LEFT, 4, f10, 3);
+
+            insertCellSideBorders(table2, "Klockslag:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getTid()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "Kalibreringsinstrument:", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getKalibreringsinstrument()), Element.ALIGN_LEFT, 4, f10, 3);
+
+            insertCellSideBorders(table2, "Väder:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getVader()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "Testsignal:", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getTestsignal()), Element.ALIGN_LEFT, 4, f10, 3);
+
+            insertCellSideBorders(table2, "Temperatur:", Element.ALIGN_LEFT, 1, bf10, 4);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getTemperatur()), Element.ALIGN_LEFT, 1, f10, 1);
+            insertCellSideBorders(table2, "Signalkälla:", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getSignalkalla()), Element.ALIGN_LEFT, 4, f10, 3);
+
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 2, bf10, 4);
+            insertCellSideBorders(table2, "Bakgrund STIPA:", Element.ALIGN_LEFT, 1, bf10, 1);
+            insertCellSideBorders(table2, String.valueOf(pdfObjectValues.getBakgrundStipa()), Element.ALIGN_LEFT, 4, f10, 3);
+
+            insertCellSideBorders(table2, "", Element.ALIGN_LEFT, 7, bf10, 0);
+
+            table2.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph2.add(table2);
+            // add the paragraph to the document
+            document.add(paragraph2);
+
+            //**************************************************************************************
+
+            float[] columnWidths3 = {2f, 2f, 2f, 2f, 2f, 2f, 2f, 2f};
+
+            //create PDF table with the given widths
+            PdfPTable table3 = new PdfPTable(columnWidths3);
+            // set table width a percentage of the page width
+            table3.setWidthPercentage(100f);
+
+            Paragraph paragraph3 = new Paragraph();
+
             //insert column headings
-            insertCell(table2, "Plats", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Objekt", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Ärvärde\nSTIPA", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Börvärde\nSTIPA", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Medelvärde", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Avvikelse", Element.ALIGN_CENTER, 1, bf10);
-            insertCell(table2, "Anmärkning", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Plats", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Objekt", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Ärvärde\nSTIPA", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Börvärde\nSTIPA", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Medelvärde", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Avvikelse", Element.ALIGN_CENTER, 1, bf10);
+            insertCell(table3, "Status", Element.ALIGN_CENTER,1,bf10);
+            insertCell(table3, "Anmärkning", Element.ALIGN_CENTER, 1, bf10);
 
             for (int i = 0; i < objectList.size(); i++) {
 
@@ -616,84 +901,96 @@ public class HandlePDF {
                 String arvardeThree = String.valueOf(splitedArvardeValues.get(2));
 
                 //Plats
-                insertCell(table2, plats, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, plats, Element.ALIGN_LEFT, 1, f10);
                 //Objekt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Ärvärde ett
-                insertCell(table2, arvardeOne, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, arvardeOne, Element.ALIGN_CENTER, 1, f10);
                 //Börvärde ett
-                insertCell(table2, borvardeValue, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, borvardeValue, Element.ALIGN_CENTER, 1, f10);
                 //Medelvärde tomt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Avvikelse tomt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
+                // Status tomt
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Anmärkning tomt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
 
                 //Plats
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Objekt
-                insertCell(table2, objektValue, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, objektValue, Element.ALIGN_CENTER, 1, f10);
                 //Ärvärde ett
-                insertCell(table2, arvardeTwo, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, arvardeTwo, Element.ALIGN_CENTER, 1, f10);
                 //Börvärde ett
-                insertCell(table2, borvardeValue, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, borvardeValue, Element.ALIGN_CENTER, 1, f10);
                 //Medelvärde tomt
-                insertCell(table2, medelvarde, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, medelvarde, Element.ALIGN_CENTER, 1, f10);
                 //Avvikelse tomt
-                insertCell(table2, avvikelse, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, avvikelse, Element.ALIGN_CENTER, 1, f10);
+                //Status värde
+                int status = object.getCompleted();
+                if(status == 0)
+                    insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
+                else
+                    insertCell(table3, "OK", Element.ALIGN_CENTER, 1, f10);
                 //Anmärkning tomt
-                insertCell(table2, anmarkning, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, anmarkning, Element.ALIGN_CENTER, 1, f10);
 
                 //Plats
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Objekt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Ärvärde ett
-                insertCell(table2, arvardeThree, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, arvardeThree, Element.ALIGN_CENTER, 1, f10);
                 //Börvärde ett
-                insertCell(table2, borvardeValue, Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, borvardeValue, Element.ALIGN_CENTER, 1, f10);
                 //Medelvärde tomt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Avvikelse tomt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
+                //Status tomt
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
                 //Anmärkning tomt
-                insertCell(table2, "", Element.ALIGN_LEFT, 1, f10);
+                insertCell(table3, "", Element.ALIGN_CENTER, 1, f10);
             }
-
-            table2.setHeaderRows(1);
-            //add the PDF table to the paragraph
-            paragraph2.add(table2);
-            // add the paragraph to the document
-            document.add(paragraph2);
-
-            float[] columnWidths3 = {3f, 1f};
-
-            //create PDF table with the given widths
-            PdfPTable table3 = new PdfPTable(columnWidths3);
-            // set table width a percentage of the page width
-            table3.setWidthPercentage(100f);
-
-            Paragraph paragraph3 = new Paragraph();
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 0);
-
-            insertCellSideBorders(table3, String.valueOf(pdfObjectValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
-
-            //Tom rad
-            insertCellSideBorders(table3, "", Element.ALIGN_LEFT, 2, bf10, 2);
 
             table3.setHeaderRows(1);
             //add the PDF table to the paragraph
             paragraph3.add(table3);
             // add the paragraph to the document
             document.add(paragraph3);
+
+            //**************************************************************************************
+
+            float[] columnWidths4 = {3f, 1f};
+
+            //create PDF table with the given widths
+            PdfPTable table4 = new PdfPTable(columnWidths4);
+            // set table width a percentage of the page width
+            table4.setWidthPercentage(100f);
+
+            Paragraph paragraph4 = new Paragraph();
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, "Övriga kommentarer:", Element.ALIGN_LEFT, 2, header, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 0);
+
+            insertCellSideBorders(table4, String.valueOf(pdfObjectValues.getOvrigaKommentarer()), Element.ALIGN_LEFT, 2, f10, 0);
+
+            //Tom rad
+            insertCellSideBorders(table4, "", Element.ALIGN_LEFT, 2, bf10, 2);
+
+            table4.setHeaderRows(1);
+            //add the PDF table to the paragraph
+            paragraph4.add(table4);
+            // add the paragraph to the document
+            document.add(paragraph4);
 
         } catch (DocumentException de) {
             Log.e("PDFCreator", "DocumentException:" + de);

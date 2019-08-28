@@ -2,44 +2,43 @@ package se.vanaheim.vanaheim;
 
 public class EditPDFObject {
 
-    private String datum;
-    private String tid;
-    private String vader;
-    private String temperatur;
-    private String nederbord;
-    private String soluppgang;
-    private String solnedgang;
-    private String driftplats;
-    private String projektnummer;
-    private String dokumentnummer;
-    private String ansvarig;
-    private String matdatum;
-    private String faststalldAv;
-    private String plats;
-    private String deltagare;
-    private String bestallare;
-    private String bestallareRef;
-    private String stationsklass;
-    private String matinstrument;
-    private String kalibreringsinstrument;
-    private String serienummer;
-    private String kalibreringsId;
-    private String kalibreringsdatum;
-    private String nastaKalibrering;
-    private String armatur;
-    private String regelverk;
-    private String hojdArmatur;
-    private String matomrade;
-    private String referens;
-    private String testsignal;
-    private String signalkalla;
-    private String bakgrundStipa;
-    private String sparkomponenter;
-    private String vaxlar;
-    private String ovrigaKommentarer;
-    private String spar;
-    private String kontrollanter;
-
+    private String datum,
+            tid,
+            vader,
+            temperatur,
+            nederbord,
+            soluppgang,
+            solnedgang,
+            driftplats,
+            projektnummer,
+            dokumentnummer,
+            ansvarig,
+            matdatum,
+            faststalldAv,
+            plats,
+            deltagare,
+            bestallare,
+            bestallareRef,
+            stationsklass,
+            matinstrument,
+            kalibreringsinstrument,
+            serienummer,
+            kalibreringsId,
+            kalibreringsdatum,
+            nastaKalibrering,
+            armatur,
+            regelverk,
+            hojdArmatur,
+            matomrade,
+            referens,
+            testsignal,
+            signalkalla,
+            bakgrundStipa,
+            sparkomponenter,
+            vaxlar,
+            ovrigaKommentarer,
+            spar,
+            kontrollanter;
 
     public EditPDFObject() {
     }

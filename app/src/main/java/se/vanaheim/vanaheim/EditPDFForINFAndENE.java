@@ -44,24 +44,11 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     private int datumOrMatdatum;
 
-    private EditText projektnummer;
-    private EditText dokumentnummer;
-    private EditText ansvarig;
-    private EditText matdatum;
-    private EditText bestallaren;
-    private EditText referens;
+    private EditText projektnummer, dokumentnummer, ansvarig, matdatum, bestallaren, referens;
 
-    private EditText spar;
-    private EditText datum;
-    private EditText tid;
-    private EditText vader;
-    private EditText temperatur;
-    private EditText kontrollanter;
-    private EditText matinstrument;
+    private EditText spar, datum, tid, vader, temperatur, kontrollanter, matinstrument;
 
-    private EditText sparkomponenter;
-    private EditText vaxlar;
-    private EditText ovrigaKommentarer;
+    private EditText sparkomponenter, vaxlar, ovrigaKommentarer;
     private FloatingActionButton createPDF;
 
     @Override
@@ -173,33 +160,23 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast toast;
-
-                ProgressBar progressBar = findViewById(R.id.progress_bar);
-                progressBar.setVisibility(View.VISIBLE);
-
                 setValuesFromLayout();
                 try {
                     pdfHandler.deletePDFFile();
                     pdfHandler.createPDFForINFObjects(objectArrayList, pdfObject);
 
-                    toast = Toast.makeText(getApplicationContext(),
+                    Toast toast = Toast.makeText(getApplicationContext(),
                             "PDF skapad",
                             Toast.LENGTH_LONG);
                     toast.show();
 
                     pdfHandler.sendPDF();
 
-                    progressBar.setVisibility(View.INVISIBLE);
-
                 } catch (Exception e) {
-                    toast = Toast.makeText(getApplicationContext(),
+                    Toast toast = Toast.makeText(getApplicationContext(),
                             "Kunde inte skapa PDF",
                             Toast.LENGTH_SHORT);
                     toast.show();
-
-                    progressBar.setVisibility(View.INVISIBLE);
-
                 }
             }
         });
@@ -267,34 +244,61 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ProgressBar progressBar = findViewById(R.id.progress_bar);
-                progressBar.setVisibility(View.VISIBLE);
 
-                Toast toast;
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPDFForINFAndENE.this);
 
-                setValuesFromLayout();
-                try {
-                    pdfHandler.deletePDFFile();
-                    pdfHandler.createPDFForENEObjects(objectArrayList, pdfObject);
+                builder.setTitle("PDF version");
+                String message = "Vilken version vill du skriva ut";
+                builder.setMessage(message);
+                builder.setPositiveButton("Med trådläget", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
 
-                    toast = Toast.makeText(getApplicationContext(),
-                            "PDF skapad",
-                            Toast.LENGTH_LONG);
-                    toast.show();
+                        setValuesFromLayout();
+                        try {
+                            pdfHandler.deletePDFFile();
+                            pdfHandler.createPDFForENEObjects(objectArrayList, pdfObject);
 
-                    pdfHandler.sendPDF();
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "PDF skapad",
+                                    Toast.LENGTH_LONG);
+                            toast.show();
 
-                    progressBar.setVisibility(View.INVISIBLE);
+                            pdfHandler.sendPDF();
 
-                } catch (Exception e) {
-                    toast = Toast.makeText(getApplicationContext(),
-                            "Kunde inte skapa PDF",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
+                        } catch (Exception e) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Kunde inte skapa PDF",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
 
-                    progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
+                builder.setNegativeButton("Utan trådläget", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                }
+                        setValuesFromLayout();
+                        try {
+                            pdfHandler.deletePDFFile();
+                            pdfHandler.createPDFForENEObjectsVersionTwo(objectArrayList, pdfObject);
+
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "PDF skapad",
+                                    Toast.LENGTH_LONG);
+                            toast.show();
+
+                            pdfHandler.sendPDF();
+
+                        } catch (Exception e) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Kunde inte skapa PDF",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+                });
+                builder.show();
             }
         });
     }
