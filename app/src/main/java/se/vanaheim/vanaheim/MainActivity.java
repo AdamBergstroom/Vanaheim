@@ -243,7 +243,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 else
                     objectTypeToDelete = 2;
 
-                showDialog(latLng);
+                int objectType;
+
+                if (snippet.contains("INF") == true)
+                    objectType = 0;
+                else if (snippet.contains("ENE") == true)
+                    objectType = 1;
+                else
+                    objectType = 2;
+
+                showDialog(latLng,objectType);
             }
         });
 
@@ -451,13 +460,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
     }
 
-    public void showDialog(final LatLng latLng) {
+    public void showDialog(final LatLng latLng, final int objectType) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle("Radera projekt");
         String message = "Är du säker på att du vill radera projektet?";
         builder.setMessage(message);
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 try {
                     databases.deleteAreaMarker(latLng);
@@ -479,7 +488,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 currentLocation = latLng;
             }
         });
-        builder.setNegativeButton("Cancel", null);
+        builder.setNegativeButton("Nej", null);
+        builder.setNeutralButton("Ändra namn", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                double latitude = mMap.getCameraPosition().target.latitude;
+                double longitude = mMap.getCameraPosition().target.longitude;
+                LatLng currentLatLng = new LatLng(latitude, longitude);
+                float currentZoom = mMap.getCameraPosition().zoom;
+
+                Intent intent = new Intent(MainActivity.this, EditProjectName.class);
+                intent.putExtra("sendBackLatLng", true);
+                intent.putExtra("currentAreaPosition", currentLatLng);
+                intent.putExtra("objectType", objectType);
+                intent.putExtra("location",latLng);
+                intent.putExtra("zoom", currentZoom);
+                MainActivity.this.startActivityForResult(intent, EDIT_REQUEST);
+            }
+        });
         builder.show();
     }
 
@@ -637,22 +664,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            /*case R.id.email_support:
-
-                try {
-                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                    emailIntent.setType("text/plain");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"adam.bergstroom@hotmail.com"});
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Förklara problemet så tydligt som möjligt.");
-                    startActivity(Intent.createChooser(emailIntent, "Pick an Email provider"));
-                } catch (Exception e) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "Något gick fel",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                return true;*/
-
             case R.id.format_database:
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);

@@ -7,8 +7,8 @@ android {
         applicationId "se.vanaheim.vanaheim"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 17
-        versionName "17.0"
+        versionCode 19
+        versionName "19.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

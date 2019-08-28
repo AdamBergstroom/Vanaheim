@@ -900,20 +900,6 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            /*case R.id.email_support:
-                try {
-                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                    emailIntent.setType("text/plain");
-                    emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"adam.bergstroom@hotmail.com"});
-                    emailIntent.putExtra(Intent.EXTRA_TEXT, "Förklara problemet så tydligt som möjligt.");
-                    startActivity(Intent.createChooser(emailIntent, "Pick an Email provider"));
-                } catch (Exception e) {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "Något gick fel",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                return true;*/
             case R.id.send_pdf:
                 try {
                     if (prmLjudmatningButton.isChecked() == true) {

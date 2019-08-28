@@ -37,7 +37,6 @@ public class AreaViewActivity extends AppCompatActivity {
     private int currentAreaPosition;
     private static final int EDIT_REQUEST = 1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,15 +94,22 @@ public class AreaViewActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Area areaObject = areaArrayList.get(position);
+                double lat = areaObject.getLatitude();
+                double lon = areaObject.getLongitude();
+                LatLng latLng = new LatLng(lat, lon);
+                int objectType = areaObject.getAreaObjectTypeNumber();
+
                 currentAreaPosition = position;
-                showDialog();
+
+                showDialog(latLng,objectType,currentAreaPosition);
 
                 return true;
             }
         });
     }
 
-    public void showDialog() {
+    public void showDialog(final LatLng latLng, final int objectType, final int currentAreaPosition) {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Ta bort område");
@@ -125,6 +131,17 @@ public class AreaViewActivity extends AppCompatActivity {
             }
         });
         builder.setNegativeButton("Avbryt", null);
+        builder.setNeutralButton("Ändra namn", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(AreaViewActivity.this, EditProjectName.class);
+                intent.putExtra("sendBackLatLng", false);
+                intent.putExtra("objectType", objectType);
+                intent.putExtra("location",latLng);
+                intent.putExtra("currentAreaPosition",currentAreaPosition);
+                AreaViewActivity.this.startActivityForResult(intent, EDIT_REQUEST);
+            }
+        });
         builder.show();
     }
 

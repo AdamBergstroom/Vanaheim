@@ -129,6 +129,12 @@
             android:parentActivityName=".ObjectViewActivity"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/RestTheme" />
+        <activity
+            android:name=".EditProjectName"
+            android:label=""
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/RestTheme" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="se.vanaheim.vanaheim.provider"

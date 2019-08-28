@@ -72,15 +72,20 @@ public class AreaINF_Fragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
+                Area areaObject = areaList.get(position);
+                double lat = areaObject.getLatitude();
+                double lon = areaObject.getLongitude();
+                LatLng latLng = new LatLng(lat, lon);
+
                 currentAreaPosition = position;
 
-                showDialog();
+                showDialog(latLng,objectType,currentAreaPosition);
                 return true;
             }
         });
     }
 
-    public void showDialog() {
+    public void showDialog(final LatLng latLng, final int objectType, final int currentAreaPosition) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle("Ta bort område");

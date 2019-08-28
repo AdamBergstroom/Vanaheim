@@ -501,6 +501,48 @@ public class HandleDatabases {
         }
     }
 
+    public void updateOneAreaName(LatLng latLng, int objectType, String newName){
+
+        double lat = latLng.latitude;
+        double lng = latLng.longitude;
+
+        String latitude = String.valueOf(lat);
+        String longitude = String.valueOf(lng);
+
+        ContentValues values = new ContentValues();
+        values.put(ContractAreasDB.AreaEntry.COLUMN_AREA_NAME, newName);
+
+        if (objectType == 0) {
+            String whereClause = ContractAreasDB.AreaEntry.COLUMN_LATITUDE + "=? AND " +
+                    ContractAreasDB.AreaEntry.COLUMN_LONGITUDE + " =?";
+            String[] whereArgs = {latitude, longitude};
+
+            try {
+                databaseForAreas.update(ContractAreasDB.AreaEntry.TABLE_NAME,values, whereClause, whereArgs);
+            } catch (Exception e) {
+            }
+        }
+        if (objectType == 1) {
+            String whereClause = ContractAreasDB.AreaEntry.COLUMN_LATITUDE + "=? AND " +
+                    ContractAreasDB.AreaEntry.COLUMN_LONGITUDE + " =?";
+            String[] whereArgs = {latitude, longitude};
+            try {
+                databaseForAreas.update(ContractAreasDB.AreaEntry.TABLE_NAME,values, whereClause, whereArgs);
+            } catch (Exception e) {
+            }
+
+        }
+        if (objectType == 2) {
+            String whereClause = ContractAreasDB.AreaEntry.COLUMN_LATITUDE + "=? AND " +
+                    ContractAreasDB.AreaEntry.COLUMN_LONGITUDE + " =?";
+            String[] whereArgs = {latitude, longitude};
+            try {
+                databaseForAreas.update(ContractAreasDB.AreaEntry.TABLE_NAME,values, whereClause, whereArgs);
+            } catch (Exception e) {
+            }
+        }
+    }
+
     public void onDownGradeAreaDatabase() {
         areaDbHelper.onDowngrade(databaseForAreas, 1, 1);
     }

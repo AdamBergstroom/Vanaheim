@@ -73,15 +73,19 @@ public class AreaPRM_Fragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-                currentAreaPosition = position;
+                Area areaObject = areaList.get(position);
+                double lat = areaObject.getLatitude();
+                double lon = areaObject.getLongitude();
+                LatLng latLng = new LatLng(lat, lon);
 
-                showDialog();
+                currentAreaPosition = position;
+                showDialog(latLng, objectType, currentAreaPosition);
                 return true;
             }
         });
     }
 
-    public void showDialog() {
+    public void showDialog(final LatLng latLng, final int objectType, final int currentAreaPosition) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         builder.setTitle("Ta bort område");
@@ -117,10 +121,10 @@ public class AreaPRM_Fragment extends Fragment {
 
                     LatLng latLng = data.getParcelableExtra("location");
                     objectType = data.getIntExtra("objectType", 0);
-                    int currentAreaPosition = data.getIntExtra("currentAreaPosition",0);
+                    int currentAreaPosition = data.getIntExtra("currentAreaPosition", 0);
 
-                    Area updatedArea = databases.recoverOneAreaMarker(objectType,latLng);
-                    areaList.set(currentAreaPosition,updatedArea);
+                    Area updatedArea = databases.recoverOneAreaMarker(objectType, latLng);
+                    areaList.set(currentAreaPosition, updatedArea);
                     areaAdapter.notifyDataSetChanged();
                 }
             }
