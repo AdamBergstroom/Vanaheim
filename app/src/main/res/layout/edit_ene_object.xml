@@ -101,7 +101,6 @@
                 android:layout_marginRight="50dp"
                 android:text="Avvikelse i sidled (mm):"
                 android:textSize="16sp"
-                android:inputType="number|text"
                 android:textColor="#000000"
                 />
 
@@ -112,6 +111,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="20dp"
+                android:inputType="number|text"
                 android:background="@drawable/border_style"
                 android:textSize="16sp"
                 />

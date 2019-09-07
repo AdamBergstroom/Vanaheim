@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -154,32 +156,9 @@ public class EditObjectActivity extends AppCompatActivity {
                     try {
                         double inputValueOfHojdAvKontakttråd = Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
                         if (inputValueOfHojdAvKontakttråd > 5650 || inputValueOfHojdAvKontakttråd < 5250) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(EditObjectActivity.this);
-
-                            builder.setTitle("Kontaktledningen");
-                            String message = "Värdet på kontaktledningen är antingen över 5650 eller under 5250";
-                            builder.setMessage(message);
-                            builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Boolean valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
-                                    Boolean valueBISEmpty = hojdAvUtliggarror.getText().toString().isEmpty();
-
-                                    try {
-                                        if (valueAISEmpty == false && valueBISEmpty == false) {
-                                            //B-A
-                                            double value = Double.parseDouble(String.valueOf(hojdAvUtliggarror.getText())) -
-                                                    Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
-                                            String valueInString = String.format("%.2f", value);
-                                            upphojdAvTillsatsror.setText(valueInString);
-                                        }
-
-                                    } catch (NumberFormatException e) {
-
-                                    }
-                                }
-                            });
-                            builder.show();
+                            hojdAvKontakttrad.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                         } else {
+                            hojdAvKontakttrad.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
 
                             valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
                             Boolean valueBISEmpty = hojdAvUtliggarror.getText().toString().isEmpty();
@@ -203,6 +182,8 @@ public class EditObjectActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG);
                         toast.show();
                     }
+                }else{
+                    hojdAvKontakttrad.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
                 }
             }
         };
@@ -517,6 +498,52 @@ public class EditObjectActivity extends AppCompatActivity {
         avvikelse.setText(newAvvikelse);
     }
 
+    public void saveNewValuesFromENE(){
+
+        Intent resultIntent;
+
+        String newKommentar;
+        String newEditor;
+
+        if (completedOrNot.isChecked() == true)
+            completed = 1;
+        else
+            completed = 0;
+
+        String newStolpnummer = String.valueOf(stolpnummer.getText());
+        String newObjektForENE = String.valueOf(objectsChosenForENE.getText());
+        String newHojdAvKontakttrad = String.valueOf(hojdAvKontakttrad.getText());
+        String newAvvikelseISidled = String.valueOf(avvikelseISidled.getText());
+        String newHojdAvUtliggarror = String.valueOf(hojdAvUtliggarror.getText());
+        String newUpphojdAvTillsatsror = String.valueOf(upphojdAvTillsatsror.getText());
+        newKommentar = String.valueOf(comments.getText());
+        newEditor = String.valueOf(editor.getText());
+
+        databases.updateOneENEObject(idRow, newStolpnummer, newObjektForENE, newHojdAvKontakttrad,
+                newAvvikelseISidled, newHojdAvUtliggarror, newUpphojdAvTillsatsror, newKommentar,
+                newEditor, completed);
+
+        try {
+            resultIntent = new Intent();
+            resultIntent.putExtra("returnCheckboxValue", returnCheckboxValue);
+            resultIntent.putExtra("content", content);
+            resultIntent.putExtra("objectType", objectType);
+            resultIntent.putExtra("location", latLng);
+            resultIntent.putExtra("idRow", idRow);
+            resultIntent.putExtra("newStolpNummer", newStolpnummer);
+            resultIntent.putExtra("positionInListView", positionInListView);
+            resultIntent.putExtra("updateListView", true);
+
+            setResult(Activity.RESULT_OK, resultIntent);
+            finish();
+        } catch (Exception e) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Något blev fel",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -573,42 +600,38 @@ public class EditObjectActivity extends AppCompatActivity {
                         }
                         break;
                     case 1:
-                        if (completedOrNot.isChecked() == true)
-                            completed = 1;
-                        else
-                            completed = 0;
+                        Boolean valueAISEmpty = hojdAvKontakttrad.getText().toString().isEmpty();
 
-                        String newStolpnummer = String.valueOf(stolpnummer.getText());
-                        String newObjektForENE = String.valueOf(objectsChosenForENE.getText());
-                        String newHojdAvKontakttrad = String.valueOf(hojdAvKontakttrad.getText());
-                        String newAvvikelseISidled = String.valueOf(avvikelseISidled.getText());
-                        String newHojdAvUtliggarror = String.valueOf(hojdAvUtliggarror.getText());
-                        String newUpphojdAvTillsatsror = String.valueOf(upphojdAvTillsatsror.getText());
-                        newKommentar = String.valueOf(comments.getText());
-                        newEditor = String.valueOf(editor.getText());
+                        if (valueAISEmpty == false) {
+                            try {
+                                double inputValueOfHojdAvKontakttråd = Double.parseDouble(String.valueOf(hojdAvKontakttrad.getText()));
 
-                        databases.updateOneENEObject(idRow, newStolpnummer, newObjektForENE, newHojdAvKontakttrad,
-                                newAvvikelseISidled, newHojdAvUtliggarror, newUpphojdAvTillsatsror, newKommentar,
-                                newEditor, completed);
+                                if (inputValueOfHojdAvKontakttråd > 5650 || inputValueOfHojdAvKontakttråd < 5250) {
 
-                        try {
-                            resultIntent = new Intent();
-                            resultIntent.putExtra("returnCheckboxValue", returnCheckboxValue);
-                            resultIntent.putExtra("content", content);
-                            resultIntent.putExtra("objectType", objectType);
-                            resultIntent.putExtra("location", latLng);
-                            resultIntent.putExtra("idRow", idRow);
-                            resultIntent.putExtra("newStolpNummer", newStolpnummer);
-                            resultIntent.putExtra("positionInListView", positionInListView);
-                            resultIntent.putExtra("updateListView", true);
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-                            setResult(Activity.RESULT_OK, resultIntent);
-                            finish();
-                        } catch (Exception e) {
-                            Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Något blev fel",
-                                    Toast.LENGTH_SHORT);
-                            toast.show();
+                                    builder.setTitle("Kontaktledningen");
+                                    String message = "Kontaktledningen är antingen högre än 5650 eller mindre än 5250. Vill du fortsätta?";
+                                    builder.setMessage(message);
+                                    builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            saveNewValuesFromENE();
+                                        }
+                                    });
+                                    builder.setNegativeButton("Avbryt", null);
+                                    builder.show();
+
+                                } else {
+                                    saveNewValuesFromENE();
+                                }
+                            } catch (NumberFormatException e) {
+                                toast = Toast.makeText(getApplicationContext(),
+                                        "Något gick fel",
+                                        Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                        }else{
+                            saveNewValuesFromENE();
                         }
                         break;
                     case 2:
