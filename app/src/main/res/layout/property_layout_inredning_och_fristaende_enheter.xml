@@ -70,7 +70,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
-                android:text="Kontrast och upptäckbara"
+                android:text="Kontrast och avrundande kanter"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -235,7 +235,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
-                android:text="Kontrast och upptäckbara"
+                android:text="Upptäckbara"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -542,7 +542,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
-                android:text="Väderskyddat område"
+                android:text="Väderskyddat område tillgängligt med rullstol"
                 android:textSize="16sp" />
 
             <TextView
@@ -561,7 +561,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_marginBottom="5dp"
-                android:text="Åtkomligt med rullstol"
+                android:text="Enl. NR"
                 android:textSize="16sp" />
 
             <LinearLayout
