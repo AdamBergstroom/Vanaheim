@@ -52,6 +52,7 @@ public class HandlePDF {
         if (!dir.exists()) {
             dir.mkdir();
 
+            /*
             if (dir.exists() && dir.isDirectory()) {
                 Toast toast = Toast.makeText(context, "Mapp skapad", Toast.LENGTH_LONG);
                 toast.show();
@@ -59,6 +60,7 @@ public class HandlePDF {
                 Toast toast = Toast.makeText(context, "Mapp blev inte skapad", Toast.LENGTH_LONG);
                 toast.show();
             }
+             */
         }
     }
 
@@ -3641,7 +3643,7 @@ public class HandlePDF {
                     case "Horisontell förflyttning":
                         insertCell(table, String.valueOf(currentObjectInArrayList.getKapITSD()) + "(1)", Element.ALIGN_LEFT, 1, bf10, true);
                         insertCell(table, "Hinderfri gångvägsbredd", Element.ALIGN_LEFT, 1, bf10, true);
-                        insertCell(table, "\u2264 160 cm", Element.ALIGN_LEFT, 1, f, true);
+                        insertCell(table, "\u2265 160 cm", Element.ALIGN_LEFT, 1, f, true);
                         insertCell(table, propertyList.getHinderfriGangvagsbredd(), Element.ALIGN_LEFT, 1, bf10, true);
 
                         extraObjects = propertyList.getHinderfriGangvagsbreddExtraObjects();
@@ -3668,7 +3670,7 @@ public class HandlePDF {
 
                         insertCell(table, String.valueOf(currentObjectInArrayList.getKapITSD()) + "(2)", Element.ALIGN_LEFT, 1, bf10, true);
                         insertCell(table, "Trösklar på hinderfri gångväg)", Element.ALIGN_LEFT, 1, bf10, true);
-                        insertCell(table, "\u2265 2,5 cm och kontrast", Element.ALIGN_LEFT, 1, bf10, true);
+                        insertCell(table, "\u2264 2,5 cm och kontrast", Element.ALIGN_LEFT, 1, f, true);
                         insertCell(table, propertyList.getTrosklarPaHinderfriGangvag(), Element.ALIGN_LEFT, 1, bf10, true);
 
                         extraObjects = propertyList.getTrosklarPaHinderfriGangvagExtraObjects();
@@ -3721,7 +3723,7 @@ public class HandlePDF {
 
                         insertCell(table, String.valueOf(currentObjectInArrayList.getKapITSD()) + "(2)", Element.ALIGN_LEFT, 1, bf10, true);
                         insertCell(table, "Bredd på trappor)", Element.ALIGN_LEFT, 1, bf10, true);
-                        insertCell(table, "\u2264 160 cm", Element.ALIGN_LEFT, 1, bf10, true);
+                        insertCell(table, "\u2265 160 cm", Element.ALIGN_LEFT, 1, f, true);
                         insertCell(table, propertyList.getBreddPaTrappor(), Element.ALIGN_LEFT, 1, bf10, true);
 
                         extraObjects = propertyList.getBreddPaTrapporExtraObjects();
@@ -4585,7 +4587,7 @@ public class HandlePDF {
 
                         insertCell(table, String.valueOf(currentObjectInArrayList.getKapITSD()) + "(3)", Element.ALIGN_LEFT, 1, bf10, true);
                         insertCell(table, "Plattforms minsta bredd", Element.ALIGN_LEFT, 1, bf10, true);
-                        insertCell(table, "\u2264 160 cm + Riskområde", Element.ALIGN_LEFT, 1, f, true);
+                        insertCell(table, "\u2265 160 cm + Riskområde", Element.ALIGN_LEFT, 1, f, true);
                         insertCell(table, propertyList.getPlattformsMinstaBredd(), Element.ALIGN_LEFT, 1, bf10, true);
 
                         extraObjects = propertyList.getPlattformsMinstaBreddExtraObjects();
