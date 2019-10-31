@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
-import se.vanaheim.vanaheim.databinding.PropertyListVisuellInformationBinding;
 import se.vanaheim.vanaheim.models.PropertyListObjects;
 
 public class EditPopertyListObjectActivity extends AppCompatActivity {

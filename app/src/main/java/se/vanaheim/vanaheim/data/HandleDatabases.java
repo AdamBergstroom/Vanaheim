@@ -3842,18 +3842,18 @@ public class HandleDatabases {
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_10_4_EXTRA_OBJECTS, propertyListObject.getNodbelysningExtraObjects());
 
         //************4.2.1.10 Visuell information************11
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getVisuell_information_row1());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row2());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getVisuell_information_row3());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row4());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getVisuell_information_row5());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row6());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getVisuell_information_row7());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row8());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getVisuell_information_row9());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row10());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getVisuell_information_row11());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row12());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getSkyltarAvstand());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getSkyltarAvstandExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getPictogram());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getPictogramExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getKontrast());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getKontrastExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getEnhetlig());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getEnhetligExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getSynligIAllaBelysningsforhallanden());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getSynligIAllaBelysningsforhallandenExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getSkyltarEnligtISO());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getSkyltarEnligtISOExtraObjects());
 
         //************4.2.1.11 Talad information Sidoplattform***********12
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_12_1, propertyListObject.getStipaNiva());
@@ -4427,18 +4427,18 @@ public class HandleDatabases {
                 newPropertyListObject.setNodbelysningExtraObjects(nodbelysningExtraObjects);
 
                 //************4.2.1.10 Visuell information************
-                newPropertyListObject.setVisuell_information_row1(skyltarAvstand);
-                newPropertyListObject.setVisuell_information_row2(skyltarAvstandExtraObjects);
-                newPropertyListObject.setVisuell_information_row3(pictogram);
-                newPropertyListObject.setVisuell_information_row4(pictogramExtraObjects);
-                newPropertyListObject.setVisuell_information_row5(kontrast);
-                newPropertyListObject.setVisuell_information_row6(kontrastExtraObjects);
-                newPropertyListObject.setVisuell_information_row7(enhetlig);
-                newPropertyListObject.setVisuell_information_row8(enhetligExtraObjects);
-                newPropertyListObject.setVisuell_information_row9(synligIAllaBelysningsforhallanden);
-                newPropertyListObject.setVisuell_information_row10(synligIAllaBelysningsforhallandenExtraObjects);
-                newPropertyListObject.setVisuell_information_row11(skyltarEnligtISO);
-                newPropertyListObject.setVisuell_information_row12(skyltarEnligtISOExtraObjects);
+                newPropertyListObject.setSkyltarAvstand(skyltarAvstand);
+                newPropertyListObject.setSkyltarAvstandExtraObjects(skyltarAvstandExtraObjects);
+                newPropertyListObject.setPictogram(pictogram);
+                newPropertyListObject.setPictogramExtraObjects(pictogramExtraObjects);
+                newPropertyListObject.setKontrast(kontrast);
+                newPropertyListObject.setKontrastExtraObjects(kontrastExtraObjects);
+                newPropertyListObject.setEnhetlig(enhetlig);
+                newPropertyListObject.setEnhetligExtraObjects(enhetligExtraObjects);
+                newPropertyListObject.setSynligIAllaBelysningsforhallanden(synligIAllaBelysningsforhallanden);
+                newPropertyListObject.setSynligIAllaBelysningsforhallandenExtraObjects(synligIAllaBelysningsforhallandenExtraObjects);
+                newPropertyListObject.setSkyltarEnligtISO(skyltarEnligtISO);
+                newPropertyListObject.setSkyltarEnligtISOExtraObjects(skyltarEnligtISOExtraObjects);
 
                 //************4.2.1.11 Talad information Sidoplattform***********
                 newPropertyListObject.setStipaNiva(stipaNiva);
@@ -4577,18 +4577,18 @@ public class HandleDatabases {
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_10_4_EXTRA_OBJECTS, propertyListObject.getNodbelysningExtraObjects());
 
         //************4.2.1.10 Visuell information************11
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getVisuell_information_row1());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row2());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getVisuell_information_row3());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row4());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getVisuell_information_row5());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row6());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getVisuell_information_row7());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row8());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getVisuell_information_row9());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row10());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getVisuell_information_row11());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row12());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getSkyltarAvstand());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getSkyltarAvstandExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getPictogram());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getPictogramExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getKontrast());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getKontrastExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getEnhetlig());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getEnhetligExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getSynligIAllaBelysningsforhallanden());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getSynligIAllaBelysningsforhallandenExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getSkyltarEnligtISO());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getSkyltarEnligtISOExtraObjects());
 
         //************4.2.1.11 Talad information Sidoplattform***********12
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_12_1, propertyListObject.getStipaNiva());
