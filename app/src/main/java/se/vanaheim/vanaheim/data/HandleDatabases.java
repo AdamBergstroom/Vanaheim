@@ -10,9 +10,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-import se.vanaheim.vanaheim.Area;
-import se.vanaheim.vanaheim.Object;
-import se.vanaheim.vanaheim.PropertyListObjects;
+import se.vanaheim.vanaheim.models.Area;
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.models.PropertyListObjects;
 
 public class HandleDatabases {
 
@@ -62,7 +62,6 @@ public class HandleDatabases {
         databaseVaxlarOchSpar = vaxlarOchSparDbHelper.getWritableDatabase();
         databaseVaxlarOchSpar = vaxlarOchSparDbHelper.getReadableDatabase();
     }
-
 
     //**************** Area markers ******************************
 
@@ -2891,7 +2890,141 @@ public class HandleDatabases {
         return objectList;
     }
 
-    public ArrayList<Object> recoverAllPRMLjusmatningObjectsWithContent(String content) {
+    public ArrayList<Object> recoverAllPRMLjusmatningObjectsWithContent(LatLng latLng, String content) {
+
+        ArrayList<Object> objectArrayList = new ArrayList<>();
+
+        String[] projection = {
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry._ID,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_PROJEKTNAMN,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_ROW,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_WIDTH_VALUE,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_1,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_2,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_3,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_4,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_5,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_6,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_7,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_8,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_9,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_10,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_11,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_12,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_13,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_14,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_COMPLETED,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_START,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_LONGITUDE,
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_LATITUDE};
+
+        Double l1 = latLng.latitude;
+        Double l2 = latLng.longitude;
+        String lat = Double.toString(l1);
+        String lng = Double.toString(l2);
+
+        String whereClause;
+        String[] whereArgs;
+
+        whereClause = ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_PROJEKTNAMN + " like? AND " +
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_LATITUDE + "=? AND " +
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_LONGITUDE + " =?";
+        whereArgs = new String[]{"%" + content + "%", lat, lng};
+
+        Cursor cursor = databaseForPRMLjusmatning.query(
+                ContractObjectsDBForPRMLjusmatning.ObjectEntry.TABLE_NAME_PRM_LJUSMATNING_OBJECTS,   // The table to query
+                projection,            // The columns to return
+                whereClause,                  // The columns for the WHERE clause
+                whereArgs,                  // The values for the WHERE clause
+                null,                  // Don't group the rows
+                null,                  // Don't filter by row groups
+                null);
+        try {
+
+            int idColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry._ID);
+            int projektNamnColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_PROJEKTNAMN);
+            int rowColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_ROW);
+            int widthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_WIDTH_VALUE);
+            int firstColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_1);
+            int secondColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_2);
+            int thirdColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_3);
+            int fourthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_4);
+            int fifthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_5);
+            int sixthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_6);
+            int seventhColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_7);
+            int eighthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_8);
+            int ninthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_9);
+            int tenthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_10);
+            int eleventhColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_11);
+            int twelfthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_12);
+            int thirteenthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_13);
+            int fourteenthColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_14);
+            int completedColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_COMPLETED);
+            int startColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_START);
+            int latitudeColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_LATITUDE);
+            int longitudeColumnIndex = cursor.getColumnIndex(ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_LONGITUDE);
+
+            while (cursor.moveToNext()) {
+
+                int idValue = cursor.getInt(idColumnIndex);
+                String projektNamnValue = cursor.getString(projektNamnColumnIndex);
+                int rowValue = cursor.getInt(rowColumnIndex);
+                String widthValue = cursor.getString(widthColumnIndex);
+                String firstValue = cursor.getString(firstColumnIndex);
+                String secondValue = cursor.getString(secondColumnIndex);
+                String thirdValue = cursor.getString(thirdColumnIndex);
+                String fourthValue = cursor.getString(fourthColumnIndex);
+                String fifthValue = cursor.getString(fifthColumnIndex);
+                String sixthValue = cursor.getString(sixthColumnIndex);
+                String seventhValue = cursor.getString(seventhColumnIndex);
+                String eightValue = cursor.getString(eighthColumnIndex);
+                String ninthValue = cursor.getString(ninthColumnIndex);
+                String tenthValue = cursor.getString(tenthColumnIndex);
+                String eleventhValue = cursor.getString(eleventhColumnIndex);
+                String twelfthValue = cursor.getString(twelfthColumnIndex);
+                String thirteenthValue = cursor.getString(thirteenthColumnIndex);
+                String fourteenthValue = cursor.getString(fourteenthColumnIndex);
+                int completedValue = cursor.getInt(completedColumnIndex);
+                String startValue = cursor.getString(startColumnIndex);
+                double latitiudeValue = cursor.getDouble(latitudeColumnIndex);
+                double longitudeValue = cursor.getDouble(longitudeColumnIndex);
+
+                Object object = new Object();
+
+                object.setIdRow(idValue);
+                object.setPlats(projektNamnValue);
+                object.setRowInColumn(rowValue);
+                object.setWidthValue(widthValue);
+                object.setFirstValue(firstValue);
+                object.setSecondValue(secondValue);
+                object.setThirdValue(thirdValue);
+                object.setFourthValue(fourthValue);
+                object.setFifthValue(fifthValue);
+                object.setSixthValue(sixthValue);
+                object.setSeventhValue(seventhValue);
+                object.setEightValue(eightValue);
+                object.setNinthValue(ninthValue);
+                object.setTenthValue(tenthValue);
+                object.setEleventhValue(eleventhValue);
+                object.setTwelfthValue(twelfthValue);
+                object.setThirteenthValue(thirteenthValue);
+                object.setFourteenthValue(fourteenthValue);
+                object.setCompleted(completedValue);
+                object.setStartValue(startValue);
+                object.setPrmType(1);
+
+                object.setLatitude(latitiudeValue);
+                object.setLongitude(longitudeValue);
+
+                objectArrayList.add(object);
+            }
+        } finally {
+            cursor.close();
+        }
+        return objectArrayList;
+    }
+
+    public ArrayList<Object> recoverAllPRMLjusmatningObjects(String content) {
 
         ArrayList<Object> objectArrayList = new ArrayList<>();
 
@@ -2923,7 +3056,6 @@ public class HandleDatabases {
         String[] whereArgs;
 
         whereClause = ContractObjectsDBForPRMLjusmatning.ObjectEntry.COLUMN_PROJEKTNAMN + " like?";
-
         whereArgs = new String[]{"%" + content + "%"};
 
         Cursor cursor = databaseForPRMLjusmatning.query(
@@ -3710,18 +3842,18 @@ public class HandleDatabases {
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_10_4_EXTRA_OBJECTS, propertyListObject.getNodbelysningExtraObjects());
 
         //************4.2.1.10 Visuell information************11
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getSkyltarAvstand());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getSkyltarAvstandExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getPictogram());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getPictogramExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getKontrast());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getKontrastExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getEnhetlig());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getEnhetligExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getSynligIAllaBelysningsforhallanden());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getSynligIAllaBelysningsforhallandenExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getSkyltarEnligtISO());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getSkyltarEnligtISOExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getVisuell_information_row1());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row2());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getVisuell_information_row3());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row4());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getVisuell_information_row5());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row6());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getVisuell_information_row7());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row8());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getVisuell_information_row9());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row10());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getVisuell_information_row11());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row12());
 
         //************4.2.1.11 Talad information Sidoplattform***********12
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_12_1, propertyListObject.getStipaNiva());
@@ -4295,18 +4427,18 @@ public class HandleDatabases {
                 newPropertyListObject.setNodbelysningExtraObjects(nodbelysningExtraObjects);
 
                 //************4.2.1.10 Visuell information************
-                newPropertyListObject.setSkyltarAvstand(skyltarAvstand);
-                newPropertyListObject.setSkyltarAvstandExtraObjects(skyltarAvstandExtraObjects);
-                newPropertyListObject.setPictogram(pictogram);
-                newPropertyListObject.setPictogramExtraObjects(pictogramExtraObjects);
-                newPropertyListObject.setKontrast(kontrast);
-                newPropertyListObject.setKontrastExtraObjects(kontrastExtraObjects);
-                newPropertyListObject.setEnhetlig(enhetlig);
-                newPropertyListObject.setEnhetligExtraObjects(enhetligExtraObjects);
-                newPropertyListObject.setSynligIAllaBelysningsforhallanden(synligIAllaBelysningsforhallanden);
-                newPropertyListObject.setSynligIAllaBelysningsforhallandenExtraObjects(synligIAllaBelysningsforhallandenExtraObjects);
-                newPropertyListObject.setSkyltarEnligtISO(skyltarEnligtISO);
-                newPropertyListObject.setSkyltarEnligtISOExtraObjects(skyltarEnligtISOExtraObjects);
+                newPropertyListObject.setVisuell_information_row1(skyltarAvstand);
+                newPropertyListObject.setVisuell_information_row2(skyltarAvstandExtraObjects);
+                newPropertyListObject.setVisuell_information_row3(pictogram);
+                newPropertyListObject.setVisuell_information_row4(pictogramExtraObjects);
+                newPropertyListObject.setVisuell_information_row5(kontrast);
+                newPropertyListObject.setVisuell_information_row6(kontrastExtraObjects);
+                newPropertyListObject.setVisuell_information_row7(enhetlig);
+                newPropertyListObject.setVisuell_information_row8(enhetligExtraObjects);
+                newPropertyListObject.setVisuell_information_row9(synligIAllaBelysningsforhallanden);
+                newPropertyListObject.setVisuell_information_row10(synligIAllaBelysningsforhallandenExtraObjects);
+                newPropertyListObject.setVisuell_information_row11(skyltarEnligtISO);
+                newPropertyListObject.setVisuell_information_row12(skyltarEnligtISOExtraObjects);
 
                 //************4.2.1.11 Talad information Sidoplattform***********
                 newPropertyListObject.setStipaNiva(stipaNiva);
@@ -4445,18 +4577,18 @@ public class HandleDatabases {
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_10_4_EXTRA_OBJECTS, propertyListObject.getNodbelysningExtraObjects());
 
         //************4.2.1.10 Visuell information************11
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getSkyltarAvstand());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getSkyltarAvstandExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getPictogram());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getPictogramExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getKontrast());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getKontrastExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getEnhetlig());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getEnhetligExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getSynligIAllaBelysningsforhallanden());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getSynligIAllaBelysningsforhallandenExtraObjects());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getSkyltarEnligtISO());
-        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getSkyltarEnligtISOExtraObjects());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1, propertyListObject.getVisuell_information_row1());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_1_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row2());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2, propertyListObject.getVisuell_information_row3());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_2_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row4());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3, propertyListObject.getVisuell_information_row5());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_3_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row6());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4, propertyListObject.getVisuell_information_row7());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_4_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row8());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5, propertyListObject.getVisuell_information_row9());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_5_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row10());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6, propertyListObject.getVisuell_information_row11());
+        values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_11_6_EXTRA_OBJECTS, propertyListObject.getVisuell_information_row12());
 
         //************4.2.1.11 Talad information Sidoplattform***********12
         values.put(ContractPropertyListDB.PropertyListEntry.COLUMN_12_1, propertyListObject.getStipaNiva());

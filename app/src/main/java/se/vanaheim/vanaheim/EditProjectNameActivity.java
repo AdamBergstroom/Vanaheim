@@ -2,6 +2,7 @@ package se.vanaheim.vanaheim;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -13,8 +14,9 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Area;
 
-public class EditProjectName extends AppCompatActivity {
+public class EditProjectNameActivity extends AppCompatActivity {
 
     private EditText projectName;
     private Button changeName;
@@ -28,6 +30,7 @@ public class EditProjectName extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.edit_project_name);
 
         try {

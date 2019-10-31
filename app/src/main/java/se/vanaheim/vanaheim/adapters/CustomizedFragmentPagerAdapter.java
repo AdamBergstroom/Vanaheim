@@ -1,9 +1,13 @@
-package se.vanaheim.vanaheim;
+package se.vanaheim.vanaheim.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import se.vanaheim.vanaheim.fragments.AreaENE_Fragment;
+import se.vanaheim.vanaheim.fragments.AreaINF_Fragment;
+import se.vanaheim.vanaheim.fragments.AreaPRM_Fragment;
 
 public class CustomizedFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;

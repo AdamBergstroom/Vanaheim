@@ -1,21 +1,12 @@
-package se.vanaheim.vanaheim;
+package se.vanaheim.vanaheim.viewmodels;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
+import se.vanaheim.vanaheim.R;
+import se.vanaheim.vanaheim.adapters.CustomizedFragmentPagerAdapter;
 
 public class AreaTableAndViewPagerLayout extends AppCompatActivity {
 

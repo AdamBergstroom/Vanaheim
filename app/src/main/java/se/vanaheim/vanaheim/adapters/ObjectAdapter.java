@@ -1,4 +1,4 @@
-package se.vanaheim.vanaheim;
+package se.vanaheim.vanaheim.adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.R;
 
 public class ObjectAdapter extends ArrayAdapter<Object> {
 

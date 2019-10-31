@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -32,7 +33,10 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import se.vanaheim.vanaheim.adapters.ObjectAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
 
 public class ObjectViewActivity extends AppCompatActivity {
@@ -65,7 +69,7 @@ public class ObjectViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
             databases = new HandleDatabases(this);
             pdfHandler = new HandlePDF(this);
@@ -631,7 +635,7 @@ public class ObjectViewActivity extends AppCompatActivity {
                 return true;*/
             case R.id.send_pdf:
                 try {
-                    Intent intent = new Intent(ObjectViewActivity.this, EditPDFForINFAndENE.class);
+                    Intent intent = new Intent(ObjectViewActivity.this, EditPDFForINFAndENEActivity.class);
                     intent.putExtra("objectType", objectType);
                     intent.putExtra("LatLng", latLng);
                     if (showReadyObjects.isChecked() == true)

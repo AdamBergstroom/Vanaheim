@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -31,7 +32,10 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import se.vanaheim.vanaheim.adapters.ObjectAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
 public class ObjectViewPRMActivity extends AppCompatActivity {
 
@@ -65,6 +69,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.list_view_for_prm_objects);
 
         try {
@@ -97,7 +102,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
 
         } catch (Exception e) {
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "Något blev fel",
+                    R.string.something_went_wrong,
                     Toast.LENGTH_SHORT);
             toast.show();
         }
@@ -116,7 +121,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 if (prmType == 0)
                     ljudmatningList = databases.recoverPRMLjudmatningObjects(latLng, true);
                 else {
-                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng,content);
 
                     //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
                     if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
@@ -141,7 +146,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 if (prmType == 0)
                     ljudmatningList = databases.recoverNotReadyPRMLjudmatningObjects(latLng);
                 else {
-                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng,content);
 
                     //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
                     if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
@@ -166,7 +171,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 if (prmType == 0)
                     ljudmatningList = databases.recoverPRMLjudmatningObjects(latLng, false);
                 else {
-                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng, content);
 
                     //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
                     if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
@@ -188,7 +193,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "Databasen kunde inte hämtas",
+                    R.string.database_could_not_be_retrieved,
                     Toast.LENGTH_SHORT);
             toast.show();
         }
@@ -206,7 +211,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 if (prmType == 0)
                     ljudmatningList = databases.recoverPRMLjudmatningObjectsWithContentAndCheckedMarker(content);
                 else {
-                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng,content);
 
                     //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
                     if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
@@ -231,7 +236,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 if (prmType == 0)
                     ljudmatningList = databases.recoverPRMLjudmatningObjectsWithContentAndNotCheckedMarker(content,latLng);
                 else {
-                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng,content);
 
                     //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
                     if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
@@ -256,7 +261,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                 if (prmType == 0)
                     ljudmatningList = databases.recoverPRMLjudmatningObjectsWithContent(content);
                 else {
-                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                    rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng,content);
 
                     //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
                     if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
@@ -534,7 +539,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                     Intent intent;
 
                     if (prmLjusmatningButton.isChecked() == true) {
-                        intent = new Intent(ObjectViewPRMActivity.this, EditPRMLjusmatning.class);
+                        intent = new Intent(ObjectViewPRMActivity.this, EditPRMLjusmatningActivity.class);
                         intent.putExtra("plats", plats);
                     } else
                         intent = new Intent(ObjectViewPRMActivity.this, EditObjectActivity.class);
@@ -905,7 +910,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
                     if (prmLjudmatningButton.isChecked() == true) {
 
                         if (searchFailedLayoutIsOn == false) {
-                            Intent intent = new Intent(ObjectViewPRMActivity.this, EditPDFForPRMLjudmatning.class);
+                            Intent intent = new Intent(ObjectViewPRMActivity.this, EditPDFForPRMLjudmatningActivity.class);
                             intent.putExtra("objectType", objectType);
                             intent.putExtra("LatLng", latLng);
                             intent.putExtra("content", content);

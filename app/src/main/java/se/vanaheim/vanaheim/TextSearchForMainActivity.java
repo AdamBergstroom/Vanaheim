@@ -7,6 +7,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -31,7 +32,11 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import se.vanaheim.vanaheim.adapters.AreaAdapter;
+import se.vanaheim.vanaheim.adapters.ObjectAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Area;
+import se.vanaheim.vanaheim.models.Object;
 
 public class TextSearchForMainActivity extends AppCompatActivity {
 
@@ -65,6 +70,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.search_layout);
 
         latLng = getIntent().getParcelableExtra("location");
@@ -282,7 +288,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
                         intent.putExtra("positionInListView", position);
                         TextSearchForMainActivity.this.startActivityForResult(intent, EDIT_REQUEST);
                     } else { //Ljusmätning layout activity
-                        intent = new Intent(TextSearchForMainActivity.this, EditPRMLjusmatning.class);
+                        intent = new Intent(TextSearchForMainActivity.this, EditPRMLjusmatningActivity.class);
                         intent.putExtra("plats", plats);
                         intent.putExtra("objectType", objectType);
                         intent.putExtra("LatLng", latLng);
@@ -676,7 +682,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
                         rowListForLjusmatning = new ArrayList<>();
 
                         ljudmatningList = databases.recoverPRMLjudmatningObjectsWithContent(content);
-                        rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+                        rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjects(content);
 
                         //Objekt finns. Lägg i dem i listan för att visa i listview
                         if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {

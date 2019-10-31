@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.EditPDFObject;
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
-public class EditPDFForPRMLjudmatning extends AppCompatActivity {
+public class EditPDFForPRMLjudmatningActivity extends AppCompatActivity {
 
     private int readyCheckboxValue;
     private int objectType;
@@ -60,7 +64,7 @@ public class EditPDFForPRMLjudmatning extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
             setContentView(R.layout.edit_pdf_ljudmatning_object);
 
@@ -124,7 +128,7 @@ public class EditPDFForPRMLjudmatning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datumOrMatdatum = 0;
-                new DatePickerDialog(EditPDFForPRMLjudmatning.this, date, myCalendar
+                new DatePickerDialog(EditPDFForPRMLjudmatningActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -136,7 +140,7 @@ public class EditPDFForPRMLjudmatning extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 datumOrMatdatum = 1;
-                new DatePickerDialog(EditPDFForPRMLjudmatning.this, date, myCalendar
+                new DatePickerDialog(EditPDFForPRMLjudmatningActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -194,7 +198,7 @@ public class EditPDFForPRMLjudmatning extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
 
         if (datumOrMatdatum == 1)

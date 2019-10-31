@@ -2,6 +2,7 @@ package se.vanaheim.vanaheim;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Object;
 
 public class CreateObjectPRMActivity extends AppCompatActivity {
 
@@ -37,7 +39,7 @@ public class CreateObjectPRMActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         objectType = getIntent().getIntExtra("objectType", 0);
         returnCheckBoxValue = getIntent().getIntExtra("objectsReadyCheckbox", 0);
         latLng = getIntent().getParcelableExtra("location");

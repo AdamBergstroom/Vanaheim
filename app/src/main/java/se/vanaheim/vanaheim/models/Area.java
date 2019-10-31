@@ -1,4 +1,4 @@
-package se.vanaheim.vanaheim;
+package se.vanaheim.vanaheim.models;
 
 public class Area {
 

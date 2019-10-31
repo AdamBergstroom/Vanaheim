@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -25,7 +26,9 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import se.vanaheim.vanaheim.adapters.AreaAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Area;
 
 public class AreaViewActivity extends AppCompatActivity {
 
@@ -40,6 +43,7 @@ public class AreaViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.list_view_for_areas);
 
         try {
@@ -49,7 +53,7 @@ public class AreaViewActivity extends AppCompatActivity {
             createListView();
         } catch (Exception e) {
             Toast toast = Toast.makeText(getApplicationContext(),
-                    "Något gick fel",
+                    R.string.something_went_wrong,
                     Toast.LENGTH_SHORT);
             toast.show();
         }
@@ -134,7 +138,7 @@ public class AreaViewActivity extends AppCompatActivity {
         builder.setNeutralButton("Ändra namn", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(AreaViewActivity.this, EditProjectName.class);
+                Intent intent = new Intent(AreaViewActivity.this, EditProjectNameActivity.class);
                 intent.putExtra("sendBackLatLng", false);
                 intent.putExtra("objectType", objectType);
                 intent.putExtra("location",latLng);

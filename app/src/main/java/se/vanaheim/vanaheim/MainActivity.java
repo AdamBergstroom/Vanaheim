@@ -7,6 +7,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -82,13 +83,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
         try {
-
-            isReadStoragePermissionGranted();
-            isWriteStoragePermissionGranted();
-
             databases = new HandleDatabases(this);
             mTopToolbar = findViewById(R.id.toolbar);
             mTopToolbar.setTitle("Vanaheim");
@@ -259,6 +257,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.clear();
 
         restoreAllMarkers();
+
+        isWriteStoragePermissionGranted();
+        isReadStoragePermissionGranted();
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -498,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 LatLng currentLatLng = new LatLng(latitude, longitude);
                 float currentZoom = mMap.getCameraPosition().zoom;
 
-                Intent intent = new Intent(MainActivity.this, EditProjectName.class);
+                Intent intent = new Intent(MainActivity.this, EditProjectNameActivity.class);
                 intent.putExtra("sendBackLatLng", true);
                 intent.putExtra("currentAreaPosition", currentLatLng);
                 intent.putExtra("objectType", objectType);
@@ -608,9 +610,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.permission_granted, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.permission_denied, Toast.LENGTH_SHORT).show();
                 }
                 return;
             }
@@ -626,7 +628,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         final EditText searchEditText = (EditText)
                 searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchEditText.setHint("Sök här på Google Maps...");
+        searchEditText.setHint(R.string.search_here_for_google_maps);
 
         searchEditText.setHintTextColor(getResources().getColor(R.color.white));
         searchView.setSearchableInfo(

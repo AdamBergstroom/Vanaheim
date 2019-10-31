@@ -2,40 +2,31 @@ package se.vanaheim.vanaheim;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Object;
 
-public class EditPRMLjusmatning extends AppCompatActivity {
+public class EditPRMLjusmatningActivity extends AppCompatActivity {
 
     private String plats;
     private LatLng latLng;
@@ -96,7 +87,7 @@ public class EditPRMLjusmatning extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         if (getIntent().hasExtra("plats"))
             plats = getIntent().getStringExtra("plats");
         if (getIntent().hasExtra("LatLng"))
@@ -157,8 +148,8 @@ public class EditPRMLjusmatning extends AppCompatActivity {
         infoColumns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertadd = new AlertDialog.Builder(EditPRMLjusmatning.this);
-                LayoutInflater factory = LayoutInflater.from(EditPRMLjusmatning.this);
+                AlertDialog.Builder alertadd = new AlertDialog.Builder(EditPRMLjusmatningActivity.this);
+                LayoutInflater factory = LayoutInflater.from(EditPRMLjusmatningActivity.this);
                 final View view = factory.inflate(R.layout.imageview_columns, null);
                 alertadd.setView(view);
 
@@ -235,8 +226,8 @@ public class EditPRMLjusmatning extends AppCompatActivity {
         infoRows.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder alertadd = new AlertDialog.Builder(EditPRMLjusmatning.this);
-                LayoutInflater factory = LayoutInflater.from(EditPRMLjusmatning.this);
+                AlertDialog.Builder alertadd = new AlertDialog.Builder(EditPRMLjusmatningActivity.this);
+                LayoutInflater factory = LayoutInflater.from(EditPRMLjusmatningActivity.this);
                 final View view = factory.inflate(R.layout.imageview_rows, null);
                 alertadd.setView(view);
 
@@ -647,13 +638,13 @@ public class EditPRMLjusmatning extends AppCompatActivity {
                             if (saveWentThrough == true) {
 
                                 try {
-                                    Intent intent = new Intent(EditPRMLjusmatning.this, EditPDFForPRMLjusmatning.class);
+                                    Intent intent = new Intent(EditPRMLjusmatningActivity.this, EditPDFForPRMLjusmatningActivity.class);
 
                                     intent.putExtra("numberOfColumns", numberOfColumns);
                                     intent.putExtra("LatLng", latLng);
                                     intent.putExtra("plats", plats);
 
-                                    EditPRMLjusmatning.this.startActivityForResult(intent, EDIT_REQUEST);
+                                    EditPRMLjusmatningActivity.this.startActivityForResult(intent, EDIT_REQUEST);
                                 } catch (Exception e) {
                                     Toast toast = Toast.makeText(getApplicationContext(),
                                             "Något gick fel",

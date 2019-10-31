@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +19,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.databinding.PropertyListVisuellInformationBinding;
+import se.vanaheim.vanaheim.models.PropertyListObjects;
 
-public class EditPopertyListObject extends AppCompatActivity {
+public class EditPopertyListObjectActivity extends AppCompatActivity {
 
     //************ 4.2.1.1 Parkeringsmöjligheter för funktionshindrade *************
     private EditText parkeringsmojligheterForFunktionshindrade;
@@ -434,6 +435,7 @@ public class EditPopertyListObject extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         removeOrNot = false;
         rowID = getIntent().getIntExtra("rowId", 0);
         databases = new HandleDatabases(this);

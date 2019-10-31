@@ -5,19 +5,14 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -25,12 +20,13 @@ import com.google.android.gms.maps.model.LatLng;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.EditPDFObject;
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
-public class EditPDFForINFAndENE extends AppCompatActivity {
+public class EditPDFForINFAndENEActivity extends AppCompatActivity {
 
     private EditPDFObject pdfObject;
     private HandlePDF pdfHandler;
@@ -54,7 +50,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
             latLng = getIntent().getExtras().getParcelable("LatLng");
             objectType = getIntent().getIntExtra("objectType", 0);
@@ -138,7 +134,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datumOrMatdatum = 0;
-                new DatePickerDialog(EditPDFForINFAndENE.this, date, myCalendar
+                new DatePickerDialog(EditPDFForINFAndENEActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -150,7 +146,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             public void onClick(View v) {
                 datumOrMatdatum = 1;
                 // TODO Auto-generated method stub
-                new DatePickerDialog(EditPDFForINFAndENE.this, date, myCalendar
+                new DatePickerDialog(EditPDFForINFAndENEActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -222,7 +218,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datumOrMatdatum = 0;
-                new DatePickerDialog(EditPDFForINFAndENE.this, date, myCalendar
+                new DatePickerDialog(EditPDFForINFAndENEActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -234,7 +230,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             public void onClick(View v) {
                 datumOrMatdatum = 1;
                 // TODO Auto-generated method stub
-                new DatePickerDialog(EditPDFForINFAndENE.this, date, myCalendar
+                new DatePickerDialog(EditPDFForINFAndENEActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -245,7 +241,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(EditPDFForINFAndENE.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditPDFForINFAndENEActivity.this);
 
                 builder.setTitle("PDF version");
                 String message = "Vilken version vill du skriva ut";
@@ -304,7 +300,7 @@ public class EditPDFForINFAndENE extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
 
         if (datumOrMatdatum == 1)

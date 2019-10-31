@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +25,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.EditPDFObject;
+import se.vanaheim.vanaheim.models.Object;
+import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
-public class EditPDFForPRMLjusmatning extends AppCompatActivity {
+public class EditPDFForPRMLjusmatningActivity extends AppCompatActivity {
 
     private HandlePDF pdfHandler;
     private String platsID;
@@ -74,6 +78,7 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.edit_pdf_ljusmatning);
         //**********************************************************   FATTAS DATABAS ENDAST ***********************************************************************
         databases = new HandleDatabases(this);
@@ -161,7 +166,6 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -174,7 +178,7 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 datumOrMatdatum = 0;
-                new DatePickerDialog(EditPDFForPRMLjusmatning.this, date, myCalendar
+                new DatePickerDialog(EditPDFForPRMLjusmatningActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -186,7 +190,7 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 datumOrMatdatum = 1;
-                new DatePickerDialog(EditPDFForPRMLjusmatning.this, date, myCalendar
+                new DatePickerDialog(EditPDFForPRMLjusmatningActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show(); }
         });
@@ -226,7 +230,7 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
                     progressBar.setVisibility(View.INVISIBLE);
 
                 } catch (Exception e) {
-                    Toast.makeText(EditPDFForPRMLjusmatning.this, "Kunde inte skapa pdf", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditPDFForPRMLjusmatningActivity.this, "Kunde inte skapa pdf", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
             }
@@ -234,7 +238,7 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
     }
 
     private void updateLabel() {
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
 
         if (datumOrMatdatum == 1)
@@ -257,7 +261,7 @@ public class EditPDFForPRMLjusmatning extends AppCompatActivity {
                         try {
 
                         } catch (Exception e) {
-                            Toast.makeText(EditPDFForPRMLjusmatning.this, "Värdena gick inte att spara", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditPDFForPRMLjusmatningActivity.this, "Värdena gick inte att spara", Toast.LENGTH_LONG).show();
                         }
                         Intent resultIntent = new Intent();
                         setResult(Activity.RESULT_OK, resultIntent);

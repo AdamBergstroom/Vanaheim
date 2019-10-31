@@ -1,11 +1,9 @@
-package se.vanaheim.vanaheim;
+package se.vanaheim.vanaheim.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,20 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-import se.vanaheim.vanaheim.data.ContractAreasDB;
-import se.vanaheim.vanaheim.data.AreaDbHelper;
-import se.vanaheim.vanaheim.data.ContractObjectsDBForINF;
-import se.vanaheim.vanaheim.data.ContractObjectsDBForPRMLjudmatning;
+import se.vanaheim.vanaheim.models.Area;
+import se.vanaheim.vanaheim.ObjectViewActivity;
+import se.vanaheim.vanaheim.R;
+import se.vanaheim.vanaheim.adapters.AreaAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
-import se.vanaheim.vanaheim.data.ObjectsDBHelperForPRMLjudmatning;
 
-public class AreaPRM_Fragment extends Fragment {
+public class AreaENE_Fragment extends Fragment {
 
     private ArrayList<Area> areaList;
     private ListView listView;
@@ -41,12 +37,15 @@ public class AreaPRM_Fragment extends Fragment {
                              Bundle savedInstanceState) {
 
         databases = new HandleDatabases(getActivity());
-        areaList = databases.recoverAreaMarkers(2);
+        areaList = databases.recoverAreaMarkers(1);
         areaAdapter = new AreaAdapter(getActivity(), areaList);
+
         View rootView = inflater.inflate(R.layout.list_view_for_areas, container, false);
+
         listView = rootView.findViewById(R.id.listAreas);
         listView.setAdapter(areaAdapter);
         setClickListeners();
+
         return rootView;
     }
 
@@ -61,18 +60,17 @@ public class AreaPRM_Fragment extends Fragment {
                 double lon = areaObject.getLongitude();
                 LatLng latLng = new LatLng(lat, lon);
 
-                Intent intent = new Intent(getActivity(), ObjectViewPRMActivity.class);
+                Intent intent = new Intent(getActivity(), ObjectViewActivity.class);
                 intent.putExtra("location", latLng);
-                intent.putExtra("objectType", 2);
+                intent.putExtra("objectType", 1);
                 intent.putExtra("currentAreaPosition", position);
-                AreaPRM_Fragment.this.startActivityForResult(intent, EDIT_REQUEST);
+                AreaENE_Fragment.this.startActivityForResult(intent, EDIT_REQUEST);
             }
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Area areaObject = areaList.get(position);
                 double lat = areaObject.getLatitude();
                 double lon = areaObject.getLongitude();
@@ -93,6 +91,7 @@ public class AreaPRM_Fragment extends Fragment {
         builder.setMessage(message);
         builder.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+
                 Area selectedArea = areaList.get(currentAreaPosition);
 
                 areaList.remove(currentAreaPosition);

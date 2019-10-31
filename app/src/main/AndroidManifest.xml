@@ -37,7 +37,7 @@
              android:name=".MainActivity"
              android:parentActivityName=".LoginScreenActivity"/>
         <activity
-            android:name=".AreaTableAndViewPagerLayout"
+            android:name=".viewmodels.AreaTableAndViewPagerLayout"
             android:label="Alla projekt"
             android:parentActivityName=".ChooseAreaViewActivity"
             android:theme="@style/RestTheme" />
@@ -49,12 +49,12 @@
         <activity
             android:name=".ObjectViewActivity"
             android:label="Dina mätpunkter"
-            android:parentActivityName=".AreaTableAndViewPagerLayout"
+            android:parentActivityName=".viewmodels.AreaTableAndViewPagerLayout"
             android:theme="@style/RestTheme" />
         <activity
             android:name=".ObjectViewPRMActivity"
             android:label="Dina mätningar"
-            android:parentActivityName=".AreaTableAndViewPagerLayout"
+            android:parentActivityName=".viewmodels.AreaTableAndViewPagerLayout"
             android:theme="@style/RestTheme" />
         <activity
             android:name=".CreateObjectActivity"
@@ -89,13 +89,13 @@
             android:theme="@style/RestTheme" />
 
         <activity
-            android:name=".EditPopertyListObject"
+            android:name=".EditPopertyListObjectActivity"
             android:label="Redigera"
             android:parentActivityName=".PropertyListViewActivity"
             android:theme="@style/RestTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".EditPRMLjusmatning"
+            android:name=".EditPRMLjusmatningActivity"
             android:label="Redigering"
             android:parentActivityName=".ObjectViewPRMActivity"
             android:theme="@style/RestTheme"
@@ -106,19 +106,19 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/RestTheme" />
         <activity
-            android:name=".EditPDFForPRMLjusmatning"
+            android:name=".EditPDFForPRMLjusmatningActivity"
             android:label=""
-            android:parentActivityName=".EditPRMLjusmatning"
+            android:parentActivityName=".EditPRMLjusmatningActivity"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/RestTheme" />
         <activity
-            android:name=".EditPDFForPRMLjudmatning"
+            android:name=".EditPDFForPRMLjudmatningActivity"
             android:label=""
             android:parentActivityName=".ObjectViewPRMActivity"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/RestTheme" />
         <activity
-            android:name=".EditPDFForINFAndENE"
+            android:name=".EditPDFForINFAndENEActivity"
             android:label=""
             android:parentActivityName=".ObjectViewActivity"
             android:windowSoftInputMode="stateHidden"
@@ -130,7 +130,7 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/RestTheme" />
         <activity
-            android:name=".EditProjectName"
+            android:name=".EditProjectNameActivity"
             android:label=""
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="stateHidden"

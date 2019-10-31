@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -13,7 +14,6 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,12 +26,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.Object;
 
 public class EditObjectActivity extends AppCompatActivity {
 
@@ -75,7 +75,7 @@ public class EditObjectActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
 
             idRow = getIntent().getIntExtra("idRow", 0);
@@ -329,7 +329,7 @@ public class EditObjectActivity extends AppCompatActivity {
                 double arvardeThreeDouble = Double.valueOf(splitedArvardeValues.get(2));
 
                 double medelvardeValue = (arvardeOneDouble + arvardeTwoDouble + arvardeThreeDouble) / 3;
-                String newMedelvarde = String.format("%.2f", medelvardeValue);
+                final String newMedelvarde = String.format("%.2f", medelvardeValue);
 
                 medelvarde.setText(newMedelvarde);
 
@@ -359,10 +359,10 @@ public class EditObjectActivity extends AppCompatActivity {
                 forwardArrow.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         try {
                             if (row != 3) {
-                                insertRowValues();
-                                saveRowValues();
+                                saveNewValueToPRMLjudmatning();
                                 row++;
                                 rowText.setText(String.valueOf(row));
                             }
@@ -390,8 +390,7 @@ public class EditObjectActivity extends AppCompatActivity {
 
                         try {
                             if (row != 1) {
-                                insertRowValues();
-                                saveRowValues();
+                                saveNewValueToPRMLjudmatning();
                                 row--;
                                 rowText.setText(String.valueOf(row));
                             }
@@ -441,8 +440,6 @@ public class EditObjectActivity extends AppCompatActivity {
                 splitedArvardeValues.set(2, String.valueOf(testArvardeValue));
                 break;
         }
-
-
     }
 
     public void saveRowValues() {
@@ -641,20 +638,10 @@ public class EditObjectActivity extends AppCompatActivity {
                             completed = 0;
 
                         try {
-                            insertRowValues();
-                            saveRowValues();
-
-                            String newPlats = String.valueOf(plats.getText());
-                            String newObjekt = String.valueOf(objektForPRMLjudmatning.getText());
-                            String newMedelvarde = String.valueOf(medelvarde.getText());
-                            String newAvvikelse = String.valueOf(avvikelse.getText());
-                            String newAnmarkning = String.valueOf(anmarkning.getText());
-                            newEditor = String.valueOf(editor.getText());
-
-                            databases.updateOnePRMLjudmatningObject(idRow, newPlats, newObjekt,
-                                    newMedelvarde, newAvvikelse, newAnmarkning, newEditor, completed);
+                            saveNewValueToPRMLjudmatning();
 
                             try {
+                                String newPlats = String.valueOf(plats.getText());
                                 resultIntent = new Intent();
                                 resultIntent.putExtra("returnCheckboxValue", returnCheckboxValue);
                                 resultIntent.putExtra("content", content);
@@ -705,5 +692,21 @@ public class EditObjectActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void saveNewValueToPRMLjudmatning() {
+        insertRowValues();
+        saveRowValues();
+        recoverRowValues();
+
+        String newPlats = String.valueOf(plats.getText());
+        String newObjekt = String.valueOf(objektForPRMLjudmatning.getText());
+        String newMedelvarde = String.valueOf(medelvarde.getText());
+        String newAvvikelse = String.valueOf(avvikelse.getText());
+        String newAnmarkning = String.valueOf(anmarkning.getText());
+        String newEditor = String.valueOf(editor.getText());
+
+        databases.updateOnePRMLjudmatningObject(idRow, newPlats, newObjekt,
+                newMedelvarde, newAvvikelse, newAnmarkning, newEditor, completed);
     }
 }

@@ -1,11 +1,9 @@
-package se.vanaheim.vanaheim;
+package se.vanaheim.vanaheim.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,17 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-import se.vanaheim.vanaheim.data.ContractAreasDB;
-import se.vanaheim.vanaheim.data.AreaDbHelper;
-import se.vanaheim.vanaheim.data.ContractObjectsDBForINF;
+import se.vanaheim.vanaheim.models.Area;
+import se.vanaheim.vanaheim.ObjectViewActivity;
+import se.vanaheim.vanaheim.R;
+import se.vanaheim.vanaheim.adapters.AreaAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
-import se.vanaheim.vanaheim.data.ObjectsDBHelperForINF;
 
 public class AreaINF_Fragment extends Fragment {
 

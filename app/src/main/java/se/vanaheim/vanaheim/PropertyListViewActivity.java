@@ -2,32 +2,25 @@ package se.vanaheim.vanaheim;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
+import se.vanaheim.vanaheim.adapters.PropertyListAdapter;
 import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.models.PropertyListObjects;
+import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
 public class PropertyListViewActivity extends AppCompatActivity {
 
@@ -44,6 +37,7 @@ public class PropertyListViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
             setContentView(R.layout.list_view_for_property_list);
             pdfHandler = new HandlePDF(this);
@@ -200,7 +194,7 @@ public class PropertyListViewActivity extends AppCompatActivity {
 
                     int rowID = propertyListObject.getRowID();
 
-                    Intent intent = new Intent(PropertyListViewActivity.this, EditPopertyListObject.class);
+                    Intent intent = new Intent(PropertyListViewActivity.this, EditPopertyListObjectActivity.class);
                     intent.putExtra("rowId", rowID);
                     PropertyListViewActivity.this.startActivityForResult(intent, EDIT_REQUEST);
                 }
