@@ -496,7 +496,7 @@ public class ObjectViewPRMActivity extends AppCompatActivity {
         ljusmatningList = new ArrayList<>();
         rowListForLjusmatning = new ArrayList<>();
 
-        rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(content);
+        rowListForLjusmatning = databases.recoverAllPRMLjusmatningObjectsWithContent(latLng,content);
 
         //Objekt finns för Ljusmätning. Lägg i dem i listan för att visa i listview
         if (rowListForLjusmatning.isEmpty() == false || rowListForLjusmatning.size() != 0) {
