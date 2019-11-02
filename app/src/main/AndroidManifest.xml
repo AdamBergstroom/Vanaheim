@@ -3,6 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="se.vanaheim.vanaheim">
     <!-- add permission -->
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,16 +25,15 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/VanaheimThemeWithNavbar">
-
-        </activity>
-
-        <activity android:name=".LoginScreenActivity"
-            android:theme="@style/VanaheimTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginScreenActivity"
+            android:theme="@style/VanaheimTheme">
         </activity>
 
         <activity
@@ -142,15 +152,4 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-    <supports-screens
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true"
-        android:xlargeScreens="true" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 </manifest>

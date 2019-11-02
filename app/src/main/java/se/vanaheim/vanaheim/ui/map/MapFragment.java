@@ -1,4 +1,4 @@
-package se.vanaheim.vanaheim.ui.dashboard;
+package se.vanaheim.vanaheim.ui.map;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,17 +13,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import se.vanaheim.vanaheim.R;
 
-public class DashboardFragment extends Fragment {
+public class MapFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private MapViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
+        homeViewModel =
+                ViewModelProviders.of(this).get(MapViewModel.class);
+        View root = inflater.inflate(R.layout.map_fragment, container, false);
+        final TextView textView = root.findViewById(R.id.text_map);
+        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
