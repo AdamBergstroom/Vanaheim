@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/border_style">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:background="@android:color/transparent"
+        android:hint="@string/search_here_for_google_maps"
+        android:textColor="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="131dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_search_black_24dp"
+        tools:layout_editor_absoluteX="277dp"
+        tools:layout_editor_absoluteY="132dp" />
+    </LinearLayout>
+
+</LinearLayout>
