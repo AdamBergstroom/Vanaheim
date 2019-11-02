@@ -12,15 +12,18 @@
         android:theme="@style/VanaheimTheme">
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home">
+            android:label="@string/title_activity_home"
+            android:theme="@style/VanaheimThemeWithNavbar">
+
+        </activity>
+
+        <activity android:name=".LoginScreenActivity"
+            android:theme="@style/VanaheimTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity android:name=".LoginScreenActivity">
         </activity>
 
         <activity
