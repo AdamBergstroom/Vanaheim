@@ -8,8 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -211,7 +211,7 @@ public class AreaViewActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
         final EditText searchEditText = (EditText)
-                searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                searchView.findViewById(R.id.search_src_text);
         //searchEditText.setMaxWidth(Integer.MAX_VALUE);  //Fungerar inte
         searchEditText.setHint("Sök här...");
 

@@ -1,9 +1,9 @@
 package se.vanaheim.vanaheim.adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import se.vanaheim.vanaheim.fragments.AreaENE_Fragment;
 import se.vanaheim.vanaheim.fragments.AreaINF_Fragment;
