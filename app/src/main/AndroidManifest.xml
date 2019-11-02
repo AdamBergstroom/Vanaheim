@@ -17,14 +17,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label=" "
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/VanaheimTheme">
+        android:theme="@style/VanaheimThemeWithNavbar">
         <activity
-            android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/VanaheimThemeWithNavbar">
+            android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +30,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginScreenActivity"
-            android:theme="@style/VanaheimTheme">
+        <activity android:name=".LoginScreenActivity">
         </activity>
 
         <activity

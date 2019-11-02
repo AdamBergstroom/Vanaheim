@@ -8,24 +8,20 @@
     <fragment
         android:id="@+id/navigation_map"
         android:name="se.vanaheim.vanaheim.ui.map.MapFragment"
-        android:label="@string/title_map"
         tools:layout="@layout/map_fragment" />
 
     <fragment
         android:id="@+id/navigation_subsystem"
         android:name="se.vanaheim.vanaheim.ui.subsystem.SubsystemFragment"
-        android:label="@string/title_subsystem"
         tools:layout="@layout/subsystem_fragment" />
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="se.vanaheim.vanaheim.ui.search.SearchFragment"
-        android:label="@string/title_search"
         tools:layout="@layout/search_fragment" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="se.vanaheim.vanaheim.ui.profile.ProfileFragment"
-        android:label="@string/title_profile"
         tools:layout="@layout/search_fragment" />
 </navigation>

@@ -13,6 +13,9 @@
     <string name="title_search">Sök</string>
     <string name="title_profile">Min profil</string>
     <string name="title_map">Karta</string>
+    <string name="hint_search_in_google_maps">Sök i Google Maps här...</string>
+    <string name="search">Sök</string>
+    <string name="title_vanaheim">Vanaheim</string>
     <string-array name="object_types">
         <item>INF</item>
         <item>ENE</item>
