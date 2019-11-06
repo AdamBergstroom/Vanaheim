@@ -14,7 +14,7 @@ import se.vanaheim.vanaheim.models.Area;
 import se.vanaheim.vanaheim.models.Object;
 import se.vanaheim.vanaheim.models.PropertyListObjects;
 
-public class HandleDatabases {
+public class HandleDatabase {
 
     private AreaDbHelper areaDbHelper;
     private ObjectsDBHelperForINF objectsDBHelperForINF;
@@ -33,7 +33,7 @@ public class HandleDatabases {
     private SQLiteDatabase databaseVaxlarOchSpar;
 
 
-    public HandleDatabases(Context c) {
+    public HandleDatabase(Context c) {
         areaDbHelper = new AreaDbHelper(c);
         databaseForAreas = areaDbHelper.getWritableDatabase();
         databaseForAreas = areaDbHelper.getReadableDatabase();

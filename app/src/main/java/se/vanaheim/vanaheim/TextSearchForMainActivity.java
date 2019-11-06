@@ -9,8 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.adapters.AreaAdapter;
 import se.vanaheim.vanaheim.adapters.ObjectAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Area;
 import se.vanaheim.vanaheim.models.Object;
 
@@ -65,7 +65,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
     private ListView listViewForAreas;
     private ListView listViewForObjects;
 
-    private HandleDatabases databases;
+    private HandleDatabase databases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
     }
 
     public void establishRecoveryForDatabases() {
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
     }
 
     public void establishInterface() {
@@ -752,7 +752,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
         final EditText searchEditText = (EditText)
-                searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                searchView.findViewById(R.id.search_src_text);
         //searchEditText.setMaxWidth(Integer.MAX_VALUE);  //Fungerar inte
         searchEditText.setHint("Sök här");
 

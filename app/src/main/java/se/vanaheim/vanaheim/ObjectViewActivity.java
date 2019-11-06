@@ -9,10 +9,10 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.annotation.RequiresApi;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.adapters.ObjectAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Object;
 import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
@@ -44,7 +44,7 @@ public class ObjectViewActivity extends AppCompatActivity {
     private ArrayList<Object> objectList;
     private ArrayList<Object> newObjectList;
     private ObjectAdapter adapter;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private HandlePDF pdfHandler;
     private boolean searchFailedLayoutIsOn;
     private LatLng latLng;
@@ -71,7 +71,7 @@ public class ObjectViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             pdfHandler = new HandlePDF(this);
             content = "";
             searchFailedLayoutIsOn = false;
@@ -588,7 +588,7 @@ public class ObjectViewActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.app_bar_search).getActionView();
         final EditText searchEditText = (EditText)
-                searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                searchView.findViewById(R.id.search_src_text);
         searchEditText.setHint("Sök här...");
 
         searchEditText.setHintTextColor(getResources().getColor(R.color.white));

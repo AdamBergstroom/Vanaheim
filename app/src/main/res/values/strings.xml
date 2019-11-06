@@ -1,15 +1,31 @@
 <resources>
     <string name="app_name">Vanaheim</string>
     <string name="action_settings">Settings</string>
-    <string name="search_here_for_google_maps">Sök här på Google Maps...</string>
+    <string name="search_here_for_google_maps">Sök i Google Maps...</string>
     <string name="permission_granted">Permission granted</string>
     <string name="permission_denied">Permission denied</string>
     <string name="something_went_wrong">Något gick fel</string>
     <string name="database_could_not_be_retrieved">Databasen kunde inte hämtas</string>
     <string name="ska_inehalla_piktogram">Ska innehålla piktogram</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Hem</string>
+    <string name="title_subsystem">Delsystem</string>
+    <string name="title_search_projects">Sök projekt</string>
+    <string name="title_profile">Min profil</string>
+    <string name="title_chapters_in_tsd">Kap i TSD</string>
+    <string name="title_map">Karta</string>
+    <string name="hint_search_in_google_maps">Sök i Google Maps här...</string>
+    <string name="search">Sök</string>
+    <string name="title_vanaheim">Vanaheim</string>
     <string-array name="object_types">
         <item>INF</item>
         <item>ENE</item>
         <item>PRM</item>
     </string-array>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
 </resources>

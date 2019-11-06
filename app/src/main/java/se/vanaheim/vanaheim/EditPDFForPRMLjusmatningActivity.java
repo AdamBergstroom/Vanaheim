@@ -7,8 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.EditPDFObject;
 import se.vanaheim.vanaheim.models.Object;
 import se.vanaheim.vanaheim.viewmodels.HandlePDF;
@@ -37,7 +37,7 @@ public class EditPDFForPRMLjusmatningActivity extends AppCompatActivity {
     private ArrayList<Object> ljusmatningList;
     private int numberOfColumns;
     private EditPDFObject pdfValuesForLjusmatning;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private Toast toast;
     private boolean rotateValue;
     final Calendar myCalendar = Calendar.getInstance();
@@ -81,7 +81,7 @@ public class EditPDFForPRMLjusmatningActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.edit_pdf_ljusmatning);
         //**********************************************************   FATTAS DATABAS ENDAST ***********************************************************************
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
         pdfHandler = new HandlePDF(this);
         pdfValuesForLjusmatning = new EditPDFObject();
 

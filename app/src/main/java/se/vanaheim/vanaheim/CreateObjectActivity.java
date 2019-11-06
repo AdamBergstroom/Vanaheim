@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 
 public class CreateObjectActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class CreateObjectActivity extends AppCompatActivity {
     private int returnReadyCheckBoxValue;
     private int returnNotReadyCheckBoxValue;
     private Button createObjectButton;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private int objectType;
 
     //INF
@@ -50,7 +50,7 @@ public class CreateObjectActivity extends AppCompatActivity {
         lat = String.valueOf(latLng.latitude);
         lng = String.valueOf(latLng.longitude);
 
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
 
         if (objectType == 0)
             setContentView(R.layout.create_new_inf_object);

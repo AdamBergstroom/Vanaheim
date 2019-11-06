@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Area;
 
 public class EditProjectNameActivity extends AppCompatActivity {
@@ -25,7 +25,7 @@ public class EditProjectNameActivity extends AppCompatActivity {
     private Boolean sendBackLatLng;
     private int currentAreaPosition;
     private float currentZoom;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class EditProjectNameActivity extends AppCompatActivity {
             projectName = findViewById(R.id.edit_project_name_text);
             changeName = findViewById(R.id.edit_change_project_name);
 
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
 
             if (getIntent().hasExtra("sendBackLatLng"))
                 sendBackLatLng = getIntent().getBooleanExtra("sendBackLatLng", false);

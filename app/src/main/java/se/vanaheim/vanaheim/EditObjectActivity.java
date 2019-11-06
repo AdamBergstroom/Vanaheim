@@ -8,7 +8,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Object;
 
 public class EditObjectActivity extends AppCompatActivity {
@@ -40,7 +40,7 @@ public class EditObjectActivity extends AppCompatActivity {
     private int completed;
     private LatLng latLng;
     private int returnCheckboxValue;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private Object object;
     private EditText editor;
     private CheckBox completedOrNot;
@@ -138,7 +138,7 @@ public class EditObjectActivity extends AppCompatActivity {
                 break;
         }
 
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
         recoverObject();
 
         inputTextWatcherForENE = new TextWatcher() {

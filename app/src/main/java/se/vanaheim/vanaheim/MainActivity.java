@@ -16,11 +16,11 @@ import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -28,7 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.app.Activity;
-import android.support.design.widget.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -37,7 +37,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -57,7 +57,7 @@ import java.util.List;
 
 import se.vanaheim.vanaheim.data.ContractAreasDB;
 import se.vanaheim.vanaheim.data.AreaDbHelper;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private float zoom;
     private SupportMapFragment mapFragment;
     private static final int EDIT_REQUEST = 1;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
 
     private LatLng currentLocation;
     private static final String TAG = "MainActivity";
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
         try {
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             mTopToolbar = findViewById(R.id.toolbar);
             mTopToolbar.setTitle("Vanaheim");
             //It is a material define android support widget. Use set- Otherwise an error will happen.
@@ -627,7 +627,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         final EditText searchEditText = (EditText)
-                searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+                searchView.findViewById(R.id.search_src_text);
         searchEditText.setHint(R.string.search_here_for_google_maps);
 
         searchEditText.setHintTextColor(getResources().getColor(R.color.white));
