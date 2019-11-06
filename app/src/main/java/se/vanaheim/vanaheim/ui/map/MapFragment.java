@@ -1,5 +1,6 @@
 package se.vanaheim.vanaheim.ui.map;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -33,12 +34,11 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mapViewModel = new MapViewModel();
+        Application appCtx = getActivity().getApplication();
+        mapViewModel = new MapViewModel(appCtx);
         binding = MapFragmentBinding.inflate(getLayoutInflater());
         initBinding();
         initMap();
-
-
 
         return binding.getRoot();
     }

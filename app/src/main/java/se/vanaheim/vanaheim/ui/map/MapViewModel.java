@@ -42,7 +42,6 @@ public class MapViewModel extends AndroidViewModel {
         database.createVaxlarOchSpar(latitude,longitude);
     }
 
-
     public MutableLiveData<Boolean> getShowInfProjects() {
         return showInfProjects;
     }
