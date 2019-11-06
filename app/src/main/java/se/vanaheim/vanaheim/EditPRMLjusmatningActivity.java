@@ -23,7 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Object;
 
 public class EditPRMLjusmatningActivity extends AppCompatActivity {
@@ -35,7 +35,7 @@ public class EditPRMLjusmatningActivity extends AppCompatActivity {
     private String content;
     private int prmType;
     private int returnCheckboxValue;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private ArrayList<Object> ljusmatningList;
     private Toast toast;
     private int swapToLayer;
@@ -103,7 +103,7 @@ public class EditPRMLjusmatningActivity extends AppCompatActivity {
         if (getIntent().hasExtra("positionInListView"))
             positionInListView = getIntent().getIntExtra("positionInListView",0);
 
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
         changeLayoutOrNot = true;
         saveWentThrough = true;
         currentRowIdInTabel = 1;

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.adapters.PropertyListAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.PropertyListObjects;
 import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
@@ -29,7 +29,7 @@ public class PropertyListViewActivity extends AppCompatActivity {
     private PropertyListAdapter propertyListAdapter;
     private static final int EDIT_REQUEST = 1;
     private int currentPosition;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private PropertyListObjects propertyList;
     private HandlePDF pdfHandler;
     private int listSize;
@@ -41,7 +41,7 @@ public class PropertyListViewActivity extends AppCompatActivity {
         try {
             setContentView(R.layout.list_view_for_property_list);
             pdfHandler = new HandlePDF(this);
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
 
             propertyList = databases.recoverPropertyList();
             boolean isEmpty = propertyList.getIsEmpty();

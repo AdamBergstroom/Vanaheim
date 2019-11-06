@@ -34,7 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.adapters.ObjectAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Object;
 import se.vanaheim.vanaheim.viewmodels.HandlePDF;
 
@@ -44,7 +44,7 @@ public class ObjectViewActivity extends AppCompatActivity {
     private ArrayList<Object> objectList;
     private ArrayList<Object> newObjectList;
     private ObjectAdapter adapter;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private HandlePDF pdfHandler;
     private boolean searchFailedLayoutIsOn;
     private LatLng latLng;
@@ -71,7 +71,7 @@ public class ObjectViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         try {
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             pdfHandler = new HandlePDF(this);
             content = "";
             searchFailedLayoutIsOn = false;

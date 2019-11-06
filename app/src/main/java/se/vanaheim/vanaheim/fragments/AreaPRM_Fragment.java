@@ -20,14 +20,14 @@ import se.vanaheim.vanaheim.models.Area;
 import se.vanaheim.vanaheim.ObjectViewPRMActivity;
 import se.vanaheim.vanaheim.R;
 import se.vanaheim.vanaheim.adapters.AreaAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 
 public class AreaPRM_Fragment extends Fragment {
 
     private ArrayList<Area> areaList;
     private ListView listView;
     private AreaAdapter areaAdapter;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private static final int EDIT_REQUEST = 1;
     private int objectType;
     private int currentAreaPosition;
@@ -36,7 +36,7 @@ public class AreaPRM_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        databases = new HandleDatabases(getActivity());
+        databases = new HandleDatabase(getActivity());
         areaList = databases.recoverAreaMarkers(2);
         areaAdapter = new AreaAdapter(getActivity(), areaList);
         View rootView = inflater.inflate(R.layout.list_view_for_areas, container, false);

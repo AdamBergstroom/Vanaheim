@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
@@ -20,7 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.PropertyListObjects;
 
 public class EditPopertyListObjectActivity extends AppCompatActivity {
@@ -425,7 +424,7 @@ public class EditPopertyListObjectActivity extends AppCompatActivity {
     private ImageButton sakerPassageTrash;
 
     //********************************************
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private PropertyListObjects propertyList;
     private int rowID;
     private Toast toast;
@@ -437,7 +436,7 @@ public class EditPopertyListObjectActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         removeOrNot = false;
         rowID = getIntent().getIntExtra("rowId", 0);
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
 
         //Hämta data från databasen i endast ett objekt
         propertyList = databases.recoverPropertyList();

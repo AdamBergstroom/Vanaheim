@@ -15,7 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Object;
 
 public class CreateObjectPRMActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class CreateObjectPRMActivity extends AppCompatActivity {
     private String lng;
     private int returnCheckBoxValue;
     private Button createObjectButton;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private int objectType;
     private boolean makeCopy;
     private String copyOfplats;
@@ -55,7 +55,7 @@ public class CreateObjectPRMActivity extends AppCompatActivity {
         lat = String.valueOf(latLng.latitude);
         lng = String.valueOf(latLng.longitude);
 
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
 
         setContentView(R.layout.create_new_prm_object);
         etPlats = findViewById(R.id.prm_ljudmatning_object_plats);

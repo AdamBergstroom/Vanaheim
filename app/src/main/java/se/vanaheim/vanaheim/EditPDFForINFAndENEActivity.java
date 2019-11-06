@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.EditPDFObject;
 import se.vanaheim.vanaheim.models.Object;
 import se.vanaheim.vanaheim.viewmodels.HandlePDF;
@@ -30,7 +30,7 @@ public class EditPDFForINFAndENEActivity extends AppCompatActivity {
 
     private EditPDFObject pdfObject;
     private HandlePDF pdfHandler;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private int readyCheckboxValue;
     private int notReadyCheckboxValue;
     private String content;
@@ -58,7 +58,7 @@ public class EditPDFForINFAndENEActivity extends AppCompatActivity {
             notReadyCheckboxValue = getIntent().getIntExtra("objectsNotReadyCheckbox", 0);
             content = getIntent().getStringExtra("content");
 
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             pdfHandler = new HandlePDF(this);
             pdfObject = new EditPDFObject();
 

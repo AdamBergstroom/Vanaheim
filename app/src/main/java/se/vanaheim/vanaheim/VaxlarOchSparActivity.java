@@ -13,14 +13,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Object;
 
 public class VaxlarOchSparActivity extends AppCompatActivity {
 
     private EditText vaxlar;
     private EditText sparkomponenter;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private LatLng latLng;
     private double latitude;
     private double longitude;
@@ -39,7 +39,7 @@ public class VaxlarOchSparActivity extends AppCompatActivity {
         sparkomponenter = findViewById(R.id.sparkomponenter_from_db);
         vaxlar = findViewById(R.id.vaxlar_from_db);
 
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
 
         boolean exists = databases.checkIfObjectExistsVaxlarOchSparComments(latitude,longitude);
 

@@ -57,7 +57,7 @@ import java.util.List;
 
 import se.vanaheim.vanaheim.data.ContractAreasDB;
 import se.vanaheim.vanaheim.data.AreaDbHelper;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private float zoom;
     private SupportMapFragment mapFragment;
     private static final int EDIT_REQUEST = 1;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
 
     private LatLng currentLocation;
     private static final String TAG = "MainActivity";
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
         try {
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             mTopToolbar = findViewById(R.id.toolbar);
             mTopToolbar.setTitle("Vanaheim");
             //It is a material define android support widget. Use set- Otherwise an error will happen.

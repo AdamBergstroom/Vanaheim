@@ -34,7 +34,7 @@ import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.adapters.AreaAdapter;
 import se.vanaheim.vanaheim.adapters.ObjectAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Area;
 import se.vanaheim.vanaheim.models.Object;
 
@@ -65,7 +65,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
     private ListView listViewForAreas;
     private ListView listViewForObjects;
 
-    private HandleDatabases databases;
+    private HandleDatabase databases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class TextSearchForMainActivity extends AppCompatActivity {
     }
 
     public void establishRecoveryForDatabases() {
-        databases = new HandleDatabases(this);
+        databases = new HandleDatabase(this);
     }
 
     public void establishInterface() {

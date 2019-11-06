@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.EditPDFObject;
 import se.vanaheim.vanaheim.models.Object;
 import se.vanaheim.vanaheim.viewmodels.HandlePDF;
@@ -34,7 +34,7 @@ public class EditPDFForPRMLjudmatningActivity extends AppCompatActivity {
     private LatLng latLng;
     private int prmType;
     private String content;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private HandlePDF pdfHandler;
     private EditPDFObject pdfObject;
     final Calendar myCalendar = Calendar.getInstance();
@@ -68,7 +68,7 @@ public class EditPDFForPRMLjudmatningActivity extends AppCompatActivity {
         try {
             setContentView(R.layout.edit_pdf_ljudmatning_object);
 
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             pdfHandler = new HandlePDF(this);
             pdfObject = new EditPDFObject();
 

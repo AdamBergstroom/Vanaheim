@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 
 import se.vanaheim.vanaheim.adapters.AreaAdapter;
-import se.vanaheim.vanaheim.data.HandleDatabases;
+import se.vanaheim.vanaheim.data.HandleDatabase;
 import se.vanaheim.vanaheim.models.Area;
 
 public class AreaViewActivity extends AppCompatActivity {
@@ -36,7 +36,7 @@ public class AreaViewActivity extends AppCompatActivity {
     private int objectType;
     private ArrayList<Area> areaArrayList;
     private AreaAdapter areaAdapter;
-    private HandleDatabases databases;
+    private HandleDatabase databases;
     private int currentAreaPosition;
     private static final int EDIT_REQUEST = 1;
 
@@ -47,7 +47,7 @@ public class AreaViewActivity extends AppCompatActivity {
         setContentView(R.layout.list_view_for_areas);
 
         try {
-            databases = new HandleDatabases(this);
+            databases = new HandleDatabase(this);
             objectType = getIntent().getIntExtra("objectType", 0);
             areaArrayList = databases.recoverAreaMarkers(objectType);
             createListView();
